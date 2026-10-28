@@ -23,14 +23,14 @@
     }
     get active() { return !!this.stream?.getVideoTracks().some(track => track.readyState === 'live'); }
     get tracked() { return this.active && !!this.points && performance.now() - this.lastSeen < 250; }
-    get calibrated() { return Object.keys(this.templates).length === 8; }
+    get calibrated() { return ['closed', 'open', 'up', 'down'].every(id => !!this.templates[id]); }
     restoreCalibration() {
       if (this.calibrated) return;
       const saved = window.SanfonaCalibrationStore?.load();
-      const ids = ['closed', 'open', 'right', 'left', 'up', 'down', 'curve-right', 'curve-left'];
+      const ids = ['closed', 'open', 'up', 'down'];
       if (!saved || saved.version !== 1 || !Number.isFinite(saved.aspect)) return;
       if (!ids.every(id => Array.isArray(saved.templates?.[id]) && saved.templates[id].length === 2 && saved.templates[id].every(p => Number.isFinite(p.x) && Number.isFinite(p.y) && p.x >= 0 && p.x <= 1 && p.y >= 0 && p.y <= 1))) return;
-      this.templates = saved.templates;
+      this.templates = Object.fromEntries(ids.map(id => [id, saved.templates[id]]));
       this.calibrationAspect = saved.aspect;
       this.poseCacheValid = false;
     }
@@ -73,7 +73,7 @@
         // Normal local scripts provide a fallback without changing permissions.
         this.detectorMode = 'página';
         try {
-          const worker = new Worker('camera-worker.js?v=0.4.6');
+          const worker = new Worker('camera-worker.js?v=0.4.7');
           this.worker = worker;
           this.detectorMode = 'segundo plano';
           worker.onmessage = event => {

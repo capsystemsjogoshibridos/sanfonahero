@@ -9,10 +9,14 @@
     const left = parseFloat(inset.paddingLeft) || 0, top = parseFloat(inset.paddingTop) || 0;
     const width = Math.min(window.innerWidth, viewport?.width || window.innerWidth) - left - (parseFloat(inset.paddingRight) || 0);
     const height = Math.min(window.innerHeight, viewport?.height || window.innerHeight) - top - (parseFloat(inset.paddingBottom) || 0);
-    const scale = Math.min(width / 390, height / 844);
+    const landscape = width > height;
+    const scale = landscape ? Math.min(width / 900, height / 500) : Math.min(width / 390, height / 844);
+    document.documentElement.classList.toggle('landscape', landscape);
+    document.documentElement.style.setProperty('--stage-width', `${width / scale}px`);
+    document.documentElement.style.setProperty('--stage-height', `${height / scale}px`);
     app.style.setProperty('--fit-scale', String(scale));
-    app.style.left = `${left + (width - 390 * scale) / 2}px`;
-    app.style.top = `${top + (height - 844 * scale) / 2}px`;
+    app.style.left = `${left}px`;
+    app.style.top = `${top}px`;
     document.documentElement.style.setProperty('--fit-scale', String(scale));
     document.documentElement.style.setProperty('--fit-left', app.style.left);
     document.documentElement.style.setProperty('--fit-top', app.style.top);

@@ -105,7 +105,7 @@ button { font: inherit; }
   padding: max(6vh, 40px) 28px max(env(safe-area-inset-bottom), 22px);
   background:
     linear-gradient(180deg, rgba(2, 12, 25, .18) 20%, rgba(3, 12, 20, .25) 47%, rgba(3, 10, 15, .92) 95%),
-    url("assets/sertao-magico.png?v=0.4.6") center bottom / cover no-repeat;
+    url("assets/sertao-magico.png?v=0.4.7") center bottom / cover no-repeat;
 }
 
 .title-screen::before {
@@ -167,14 +167,14 @@ button { font: inherit; }
 .tiny-hat { color: var(--gold); font-size: 27px; }
 
 .select-screen {
-  --selection-image: url("assets/sertao-magico.png?v=0.4.6");
+  --selection-image: url("assets/sertao-magico.png?v=0.4.7");
   flex-direction: column;
   background:
     linear-gradient(180deg, rgba(4,16,29,.55), #071522 82%),
     var(--selection-image) center / cover;
 }
-.select-screen[data-theme="celular"] { --selection-image: url("assets/cabra-celular.png?v=0.4.6"); }
-.select-screen[data-theme="baile"] { --selection-image: url("assets/aprendendo-forrozear.png?v=0.4.6"); }
+.select-screen[data-theme="celular"] { --selection-image: url("assets/cabra-celular.png?v=0.4.7"); }
+.select-screen[data-theme="baile"] { --selection-image: url("assets/aprendendo-forrozear.png?v=0.4.7"); }
 .selection-stage { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 6px 18px; }
 .record-carousel { display: grid; grid-template-columns: 48px minmax(0, 1fr) 48px; align-items: center; gap: 5px; width: min(100%, 390px); margin: 0 auto; }
 .song-nav { width: 44px; height: 64px; border: 1px solid rgba(255,221,134,.38); border-radius: 18px; background: rgba(4,15,23,.72); color: var(--gold-light); font-size: 38px; line-height: 1; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,.35); }
@@ -201,9 +201,9 @@ button { font: inherit; }
 .difficulty strong { color: var(--orange); }.pepper-meter { display: flex; gap: 4px; }.pepper-meter b { color: var(--orange); }.pepper-meter .off { color: #33404a; }
 .bora-button { margin: 12px 30px max(env(safe-area-inset-bottom), 26px); display: flex; justify-content: center; align-items: center; gap: 12px; }.bora-button span { font-size: 30px; }
 
-.game-screen { --scene-image: url("assets/sertao-magico.png?v=0.4.6"); background: #071522; isolation: isolate; }
-.game-screen[data-theme="celular"] { --scene-image: url("assets/cabra-celular.png?v=0.4.6"); }
-.game-screen[data-theme="baile"] { --scene-image: url("assets/aprendendo-forrozear.png?v=0.4.6"); }
+.game-screen { --scene-image: url("assets/sertao-magico.png?v=0.4.7"); background: #071522; isolation: isolate; }
+.game-screen[data-theme="celular"] { --scene-image: url("assets/cabra-celular.png?v=0.4.7"); }
+.game-screen[data-theme="baile"] { --scene-image: url("assets/aprendendo-forrozear.png?v=0.4.7"); }
 .game-bg { position: absolute; z-index: 0; inset: -3%; background: linear-gradient(180deg, rgba(1,9,18,.34), rgba(1,8,12,.06) 65%, rgba(2,6,8,.64)), var(--scene-image) center / cover; transform: scale(1.05); will-change: transform, filter; animation: backdrop-breathe 14s ease-in-out infinite alternate; }
 .game-bg::before { content: ""; position: absolute; inset: 0; background: repeating-conic-gradient(from 15deg at 50% 62%, rgba(255,194,53,.19) 0 7deg, transparent 8deg 19deg, rgba(25,183,170,.12) 20deg 27deg, transparent 28deg 42deg); mix-blend-mode: screen; opacity: .48; -webkit-mask-image: radial-gradient(circle at 50% 62%, #000 0 10%, transparent 53%); mask-image: radial-gradient(circle at 50% 62%, #000 0 10%, transparent 53%); animation: aura-turn 24s linear infinite; }
 .game-bg::after { content: ""; position: absolute; inset: 6% -10% 0; background: linear-gradient(135deg, transparent 18%, rgba(255,130,33,.12) 18% 25%, transparent 25% 55%, rgba(28,183,171,.11) 55% 62%, transparent 62%), linear-gradient(35deg, transparent 35%, rgba(255,221,97,.1) 36% 41%, transparent 42%); clip-path: polygon(0 23%, 14% 12%, 28% 28%, 43% 7%, 58% 26%, 75% 9%, 100% 27%, 100% 100%, 0 100%); opacity: .6; animation: poly-horizon 9s ease-in-out infinite alternate; }
@@ -348,7 +348,7 @@ button { font: inherit; }
 .modal, .countdown { backdrop-filter: none; }
 .game-screen.reaction-hit .kaleido, .game-screen.reaction-hit .bellows-sun { opacity: .24; }
 /* One portrait stage scaled to the actual viewport; controls never fall below it. */
-#app { position: fixed; width: 390px; height: 844px; margin: 0; transform: scale(var(--fit-scale, 1)); transform-origin: top left; }
+#app { position: fixed; width: var(--stage-width, 390px); height: var(--stage-height, 844px); margin: 0; transform: scale(var(--fit-scale, 1)); transform-origin: top left; }
 .select-screen, .camera-screen { overflow: hidden; }
 .camera-screen .topbar { padding: 14px 18px 10px; min-height: 70px; }
 .camera-screen .topbar h2 { font-size: 24px; }
@@ -365,3 +365,46 @@ button { font: inherit; }
 .select-screen .selection-stage { min-height: 0; }
 .select-screen .bora-button { margin-bottom: 18px; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; } }
+/* Landscape uses the entire stage with side-by-side content and controls. */
+.landscape .topbar { padding: 12px 20px; min-height: 70px; }
+.landscape .title-screen { flex-direction: row; justify-content: space-evenly; gap: 30px; padding: 40px; }
+.landscape .brand-wrap { flex: 1; transform: none; }
+.landscape .title-actions { flex: 1; max-width: 350px; margin: 0; }
+.landscape .select-screen.active { display: grid; grid-template-columns: 1.1fr 1fr; grid-template-rows: 70px 1fr auto auto; padding-bottom: 12px; }
+.landscape .select-screen .topbar { grid-column: 1 / -1; }
+.landscape .selection-stage { grid-column: 1; grid-row: 2 / 5; padding: 0 22px; }
+.landscape .record-wrap { width: 130px; height: 130px; }
+.landscape .song-info { min-height: 0; }
+.landscape .song-info h3 { font-size: 23px; }
+.landscape .difficulty { margin-top: 8px; padding: 8px; }
+.landscape .control-picker { grid-column: 2; align-self: end; }
+.landscape .control-status { grid-column: 2; text-align: center; }
+.landscape .bora-button { grid-column: 2; margin: 16px 30px 24px; align-self: start; }
+.landscape .camera-content { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); grid-template-rows: repeat(8, auto); column-gap: 20px; gap: 5px 20px; }
+.landscape .camera-content > * { grid-column: 2; }
+.landscape .camera-content > p:first-child { grid-column: 1; grid-row: 1; }
+.landscape .camera-preview { grid-column: 1; grid-row: 2 / 8; min-height: 0; }
+.landscape #camera-tracking { grid-column: 1; grid-row: 8; }
+.landscape .camera-pose { grid-row: 1 / 3; }
+.landscape #camera-message { grid-row: 3; }
+.landscape .camera-latency { grid-row: 4; }
+.landscape .camera-hint { grid-row: 5; }
+.landscape #camera-calibrate { grid-row: 6; }
+.landscape #camera-ready { grid-row: 7; }
+.landscape #camera-retry { grid-row: 8; }
+.landscape .tutorial-page { padding: 10px 35px; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr auto auto 1fr; gap: 8px 30px; }
+.landscape .tutorial-page > :first-child { grid-column: 1; grid-row: 1 / 5; align-self: center; }
+.landscape .tutorial-page > .eyebrow { grid-column: 2; grid-row: 2; }
+.landscape .tutorial-page > h3 { grid-column: 2; grid-row: 3; }
+.landscape .tutorial-page > p { grid-column: 2; grid-row: 4; }
+.landscape .tutorial-visual { transform: none; height: 190px; margin: auto; }
+.landscape #tutorial-next { margin: 12px 30px 16px; align-self: flex-end; min-width: 260px; }
+.landscape .modal-card { width: min(90%, 620px); padding: 18px 28px; }
+.landscape .modal-card h2 { font-size: 26px; }
+.landscape .modal-card p, .landscape .modal-score { margin: 8px 0; }
+.landscape .modal-card .text-button { margin-top: 12px; }
+.landscape .game-hud { padding-top: 12px; }
+.landscape .note-lane { top: 65px; }
+.landscape .touch-help { font-size: 10px; }
+.accordion-end { height: 150px; margin-top: -75px; }
+.landscape .accordion-end { width: 88px; height: 88px; margin: -44px 0 0 -44px; }
