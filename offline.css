@@ -5,3 +5,5 @@
 .offline-card button { display: block; width: 100%; padding: 12px; border-radius: 12px; border: 1px solid #edc666; background: #f7b52c; color: #261600; font-weight: bold; margin-top: 12px; cursor: pointer; }
 #offline-status { color: #ffe38f; font-weight: bold; }
 .offline-card small { display: block; color: #c2d4dc; }
+#offline-panel { inset: auto; left: var(--fit-left, 0px); top: var(--fit-top, 0px); width: 390px; height: 844px; padding: 14px; overflow: hidden; transform: scale(var(--fit-scale, 1)); transform-origin: top left; }
+.offline-card { margin: 0; padding: 20px; font-size: 14px; line-height: 1.4; }

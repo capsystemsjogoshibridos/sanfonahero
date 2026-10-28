@@ -1,5 +1,5 @@
 /* Detection runs away from the rendering/audio thread. No images leave the device. */
-importScripts('vendor/aruco/cv.js?v=0.4.5', 'vendor/aruco/aruco.js?v=0.4.5', 'vendor/aruco/dictionary.js?v=0.4.5');
+importScripts('vendor/aruco/cv.js?v=0.4.6', 'vendor/aruco/aruco.js?v=0.4.6', 'vendor/aruco/dictionary.js?v=0.4.6');
 const detector = new AR.Detector({ dictionaryName: 'SANFONA_4X4_50', maxHammingDistance: 1 });
 self.onmessage = ({ data }) => {
   try {

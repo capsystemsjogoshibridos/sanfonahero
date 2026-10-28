@@ -1,5 +1,11 @@
 (() => {
   'use strict';
+  const calibrationKey = 'sanfona-calibration-v1';
+  window.SanfonaCalibrationStore = {
+    load() { try { return JSON.parse(localStorage.getItem(calibrationKey)); } catch { return null; } },
+    save(value) { try { localStorage.setItem(calibrationKey, JSON.stringify(value)); } catch {} },
+    clear() { try { localStorage.removeItem(calibrationKey); } catch {} }
+  };
   const status = document.querySelector('#offline-status');
   const panel = document.querySelector('#offline-panel');
   const retry = document.querySelector('#offline-retry');

@@ -24,8 +24,19 @@
     get active() { return !!this.stream?.getVideoTracks().some(track => track.readyState === 'live'); }
     get tracked() { return this.active && !!this.points && performance.now() - this.lastSeen < 250; }
     get calibrated() { return Object.keys(this.templates).length === 8; }
+    restoreCalibration() {
+      if (this.calibrated) return;
+      const saved = window.SanfonaCalibrationStore?.load();
+      const ids = ['closed', 'open', 'right', 'left', 'up', 'down', 'curve-right', 'curve-left'];
+      if (!saved || saved.version !== 1 || !Number.isFinite(saved.aspect)) return;
+      if (!ids.every(id => Array.isArray(saved.templates?.[id]) && saved.templates[id].length === 2 && saved.templates[id].every(p => Number.isFinite(p.x) && Number.isFinite(p.y) && p.x >= 0 && p.x <= 1 && p.y >= 0 && p.y <= 1))) return;
+      this.templates = saved.templates;
+      this.calibrationAspect = saved.aspect;
+      this.poseCacheValid = false;
+    }
     async start() {
       this.stop();
+      this.restoreCalibration();
       const generation = this.generation;
       if (window.origin === 'null') {
         throw new Error('Este ambiente isola o jogo e não permite câmera. Volte e use o modo Toque. O modo câmera exige uma hospedagem que autorize esse acesso.');
@@ -52,11 +63,17 @@
         this.video.srcObject = stream;
         await this.video.play();
         if (generation !== this.generation) return false;
+        const aspect = this.video.videoWidth / this.video.videoHeight;
+        if (this.calibrated && this.calibrationAspect && Math.abs(aspect / this.calibrationAspect - 1) > .1) {
+          this.templates = {};
+          window.SanfonaCalibrationStore?.clear();
+        }
+        this.calibrationAspect = aspect;
         // Some hosts permit the camera but block workers or their importScripts.
         // Normal local scripts provide a fallback without changing permissions.
         this.detectorMode = 'página';
         try {
-          const worker = new Worker('camera-worker.js?v=0.4.5');
+          const worker = new Worker('camera-worker.js?v=0.4.6');
           this.worker = worker;
           this.detectorMode = 'segundo plano';
           worker.onmessage = event => {
@@ -105,7 +122,7 @@
       this.points = null;
       this.lastSeen = -Infinity;
       this.history = [];
-      this.templates = {};
+      this.poseCacheValid = false;
     }
     loop() {
       if (!this.active) return;
@@ -204,6 +221,7 @@
       }
       this.templates[id] = mean;
       this.poseCacheValid = false;
+      if (this.calibrated) window.SanfonaCalibrationStore?.save({ version: 1, aspect: this.calibrationAspect, templates: this.templates });
     }
     score(id) {
       if (!this.tracked || !this.templates[id]) return Infinity;
