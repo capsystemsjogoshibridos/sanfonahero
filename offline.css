@@ -1,0 +1,7 @@
+#offline-open { position: absolute; top: max(12px, env(safe-area-inset-top)); right: 12px; z-index: 35; border: 1px solid #e3b74f; border-radius: 20px; background: #071522; color: #ffe3a0; padding: 9px 13px; font: bold 12px Arial; }
+#offline-panel { position: fixed; inset: 0; z-index: 200; background: #030c14ef; overflow-y: auto; padding: max(20px, env(safe-area-inset-top)) 20px 30px; touch-action: pan-y; }
+.offline-card { max-width: 480px; margin: 20px auto; background: #112e3c; border-radius: 22px; padding: 24px; color: #fff1c8; line-height: 1.5; }
+.offline-card h2 { margin-top: 0; }
+.offline-card button { display: block; width: 100%; padding: 12px; border-radius: 12px; border: 1px solid #edc666; background: #f7b52c; color: #261600; font-weight: bold; margin-top: 12px; cursor: pointer; }
+#offline-status { color: #ffe38f; font-weight: bold; }
+.offline-card small { display: block; color: #c2d4dc; }

@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+    <meta name="theme-color" content="#061526" />
+    <meta name="description" content="Sanfona Hero — um jogo rítmico inspirado no sertão brasileiro." />
+    <title>Sanfona Hero</title>
+    <link rel="stylesheet" href="styles.css?v=0.4.3" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="./app-icon.png" />
+    <link rel="stylesheet" href="./offline.css" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Sanfona Hero" />
+  </head>
+  <body>
+    <main id="app" aria-live="polite">
+      <section id="loading-screen" class="screen active loading-screen" aria-label="Carregando o jogo">
+        <div class="loading-kaleido" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="loading-content">
+          <div class="loading-emblem" aria-hidden="true"><span>♫</span></div>
+          <small>PREPARANDO O ARRAIÁ</small>
+          <h2>Carregando...</h2>
+          <div class="loading-track" role="progressbar" aria-label="Progresso do carregamento" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <i id="loading-progress"></i>
+          </div>
+          <strong id="loading-percent">0%</strong>
+          <p id="loading-status">Afinando a sanfona</p>
+        </div>
+      </section>
+
+      <section id="studio-screen" class="screen studio-screen" aria-label="CAP Systems">
+        <button id="studio-skip" class="studio-skip" type="button" aria-label="Continuar para a tela de título">
+          <img src="assets/cap-systems-logo.png?v=0.4.3" alt="CAP Systems" />
+          <span>Toque para continuar</span>
+        </button>
+      </section>
+
+      <section id="title-screen" class="screen title-screen" aria-label="Tela de título">
+        <div class="stars" aria-hidden="true"></div>
+        <div class="brand-wrap">
+          <div class="hat-mark" aria-hidden="true"><span>✦</span></div>
+          <h1 class="logo"><span>Sanfona</span><strong>Hero</strong></h1>
+          <p class="subtitle">O ritmo mais arretado do sertão</p>
+          <p class="title-credit">Criado por Christopher de Assis Pereira (CAP Systems)</p>
+        </div>
+
+        <button id="offline-open" type="button">Offline e instalação</button>
+        <div class="title-actions">
+          <button id="play-button" class="button button-primary" type="button">
+            <span class="button-icon">♫</span> Sanfonar!
+          </button>
+          <button id="tutorial-button" class="button button-secondary" type="button">
+            <span class="button-icon">?</span> Tutorial
+          </button>
+        </div>
+      </section>
+
+      <section id="select-screen" class="screen select-screen" aria-label="Seleção de música">
+        <header class="topbar">
+          <button class="icon-button back-title" type="button" aria-label="Voltar">‹</button>
+          <div>
+            <small>ESCOLHA O BAIÃO</small>
+            <h2>Qual vai tocar?</h2>
+          </div>
+          <span class="tiny-hat" aria-hidden="true">✦</span>
+        </header>
+
+        <div class="selection-stage">
+          <div class="record-carousel">
+            <button id="previous-song" class="song-nav" type="button" aria-label="Música anterior">‹</button>
+            <button id="song-card" class="song-card" type="button" aria-label="Ouvir prévia de Sanfona de Cristóvão">
+              <div class="record-wrap">
+                <div class="record">
+                  <div class="record-rings"></div>
+                  <div id="record-label" class="record-label">SH</div>
+                </div>
+                <div class="play-preview"><span id="preview-icon">▶</span></div>
+              </div>
+              <div class="equalizer" id="equalizer" aria-hidden="true">
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              </div>
+              <span class="tap-hint">Toque para ouvir um trecho</span>
+            </button>
+            <button id="next-song" class="song-nav" type="button" aria-label="Próxima música">›</button>
+          </div>
+          <div id="song-dots" class="song-dots" aria-label="Faixa 1 de 3"><i class="active"></i><i></i><i></i></div>
+
+          <article class="song-info">
+            <span id="track-number" class="track-number">FAIXA 01</span>
+            <h3 id="song-title">Sanfona de Cristóvão</h3>
+            <p id="song-description">Forró encantado • CAP Systems</p>
+            <div class="difficulty">
+              <span>Dificuldade</span>
+              <div id="pepper-meter" class="pepper-meter" aria-label="Dificuldade: arretada, três de cinco">
+                <b>◆</b><b>◆</b><b>◆</b><b class="off">◆</b><b class="off">◆</b>
+              </div>
+              <strong id="difficulty-label">ARRETADA</strong>
+            </div>
+          </article>
+        </div>
+
+        <div class="control-picker" aria-label="Modo de controle">
+          <button id="touch-mode" type="button" aria-pressed="true">Toque</button>
+          <button id="camera-mode" type="button" aria-pressed="false">Câmera + sanfona real</button>
+        </div>
+        <p id="control-status" class="control-status">Controle com os dedos na tela</p>
+        <button id="start-button" class="button button-primary bora-button" type="button">Bora! <span>›</span></button>
+      </section>
+
+      <section id="camera-screen" class="screen camera-screen" aria-label="Calibração da câmera">
+        <header class="topbar">
+          <button id="camera-back" class="icon-button" type="button" aria-label="Voltar e desligar câmera">‹</button>
+          <div><small>SANFONA REAL</small><h2>Calibrar câmera</h2></div>
+        </header>
+        <div class="camera-content">
+          <p>Fixe o celular. ID 0 na sua mão esquerda e ID 1 na direita. Mantenha o corpo na mesma posição durante a calibração e o jogo.</p>
+          <div class="camera-preview"><video id="camera-video" muted playsinline></video><canvas id="camera-overlay"></canvas></div>
+          <p id="camera-tracking" role="status">Câmera desligada</p>
+          <div class="camera-pose"><img id="camera-pose-image" alt="Pose para calibrar" /><div><small id="camera-step">PREPARAÇÃO</small><h3 id="camera-instruction">Permita o uso da câmera</h3></div></div>
+          <p id="camera-message" role="status">O vídeo é processado apenas neste aparelho, sem gravação ou envio.</p>
+          <label class="camera-latency">Compensação do atraso: <output id="camera-latency-value">80 ms</output><input id="camera-latency" type="range" min="0" max="300" step="10" value="80" /></label>
+          <p class="camera-hint">Após calibrar, teste as poses. Se os acertos chegarem atrasados, aumente a compensação aos poucos.</p>
+          <button id="camera-calibrate" class="button button-primary" type="button" disabled>Iniciar calibração automática</button>
+          <button id="camera-ready" class="button button-secondary" type="button" hidden>Escolher música</button>
+          <button id="camera-retry" class="text-button" type="button" hidden>Abrir câmera novamente</button>
+        </div>
+      </section>
+
+      <section id="game-screen" class="screen game-screen" aria-label="Jogo">
+        <div class="game-bg" aria-hidden="true"></div>
+        <div id="stage-fx" class="stage-fx" aria-hidden="true">
+          <div class="kaleido kaleido-a"></div>
+          <div class="kaleido kaleido-b"></div>
+          <div class="bellows-sun"></div>
+          <div class="lowpoly-drift">
+            <i style="--x:8%;--y:24%;--size:52px;--delay:-1s;--turn:18deg"></i>
+            <i style="--x:78%;--y:18%;--size:68px;--delay:-5s;--turn:-24deg"></i>
+            <i style="--x:16%;--y:47%;--size:42px;--delay:-3s;--turn:38deg"></i>
+            <i style="--x:83%;--y:44%;--size:48px;--delay:-7s;--turn:8deg"></i>
+            <i style="--x:4%;--y:70%;--size:76px;--delay:-4s;--turn:-16deg"></i>
+            <i style="--x:74%;--y:72%;--size:88px;--delay:-8s;--turn:30deg"></i>
+            <i style="--x:37%;--y:31%;--size:34px;--delay:-2s;--turn:-35deg"></i>
+            <i style="--x:55%;--y:79%;--size:46px;--delay:-6s;--turn:14deg"></i>
+          </div>
+          <div class="junina-garland">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <div class="music-constellation">
+            <i>♪</i><i>♫</i><i>♪</i><i>♩</i><i>♫</i><i>♪</i>
+          </div>
+          <div id="reaction-fx" class="reaction-fx"></div>
+        </div>
+        <header class="game-hud">
+          <button id="pause-button" class="icon-button" type="button" aria-label="Pausar">Ⅱ</button>
+          <div class="score-block"><small>PONTOS</small><strong id="score">000000</strong></div>
+          <div class="streak-block"><small>PERIGO</small><div id="danger-pips" class="danger-pips" aria-label="Zero erros consecutivos"></div></div>
+        </header>
+
+        <div id="combo" class="combo" aria-hidden="true"><strong>0</strong><span>ARRASTÃO</span></div>
+        <div id="feedback" class="feedback" aria-live="assertive"></div>
+        <div id="note-lane" class="note-lane" aria-hidden="true"></div>
+        <div class="hit-line" aria-hidden="true"><span></span><em>AGORA!</em><span></span></div>
+
+        <div id="accordion-zone" class="accordion-zone">
+          <canvas id="accordion-3d" aria-hidden="true"></canvas>
+          <div id="pose-readout" class="pose-readout">Segure os dois lados</div>
+          <button id="left-grip" class="accordion-end left-end" type="button" aria-label="Segure e mova o lado esquerdo da sanfona">
+            <span class="grip-dots">••<br />••<br />••</span><span class="touch-ring"></span>
+          </button>
+          <button id="right-grip" class="accordion-end right-end" type="button" aria-label="Segure e mova o lado direito da sanfona">
+            <span class="keys">▮▯▮<br />▯▮▯<br />▮▯▮</span><span class="touch-ring"></span>
+          </button>
+        </div>
+
+        <div class="touch-help"><span>☝ MÃO ESQUERDA</span><span>MÃO DIREITA ☝</span></div>
+        <div id="camera-game-status" class="camera-game-status" hidden></div>
+
+        <div id="countdown" class="countdown"><span>Prepare as mãos!</span><strong>3</strong></div>
+      </section>
+
+      <section id="tutorial-screen" class="screen tutorial-screen" aria-label="Tutorial">
+        <header class="topbar tutorial-topbar">
+          <button class="icon-button back-title" type="button" aria-label="Voltar">‹</button>
+          <div><small>APRENDA A JOGAR</small><h2>Domine o fole</h2></div>
+          <span id="tutorial-step-count">1/4</span>
+        </header>
+        <div id="tutorial-pages" class="tutorial-pages">
+          <article class="tutorial-page active">
+            <div class="tutorial-visual frame-preview"><img src="assets/frames/sanfona_totalmente_aberta.png?v=0.4.3" alt="Sanfona totalmente aberta" /></div>
+            <span class="eyebrow">AS DUAS MÃOS</span>
+            <h3>Segure firme!</h3>
+            <p>Encoste um dedo em cada lado da sanfona. Mantenha os dois dedos na tela e mova as mãos juntas.</p>
+          </article>
+          <article class="tutorial-page">
+            <div class="gesture-grid">
+              <div><img src="assets/frames/sanfona_totalmente_aberta.png?v=0.4.3" alt="" /><b>ABERTA</b></div>
+              <div><img src="assets/frames/sanfona_totalmente_fechada.png?v=0.4.3" alt="" /><b>FECHADA</b></div>
+              <div><img src="assets/frames/sanfona_aberta_direita.png?v=0.4.3" alt="" /><b>DIREITA</b></div>
+              <div><img src="assets/frames/sanfona_aberta_esquerda.png?v=0.4.3" alt="" /><b>ESQUERDA</b></div>
+            </div>
+            <span class="eyebrow">MOVIMENTOS LATERAIS</span>
+            <h3>Abra e feche!</h3>
+            <p>Leve os lados até as posições mostradas. As setas indicam o caminho das duas mãos.</p>
+          </article>
+          <article class="tutorial-page">
+            <div class="gesture-grid">
+              <div><img src="assets/frames/sanfona_tudo_cima.png?v=0.4.3" alt="" /><b>PRA CIMA</b></div>
+              <div><img src="assets/frames/sanfona_tudo_baixo.png?v=0.4.3" alt="" /><b>PRA BAIXO</b></div>
+              <div><img src="assets/frames/sanfona_curva_direita.png?v=0.4.3" alt="" /><b>CURVA DIR.</b></div>
+              <div><img src="assets/frames/sanfona_curva_esquerda.png?v=0.4.3" alt="" /><b>CURVA ESQ.</b></div>
+            </div>
+            <span class="eyebrow">MOVIMENTOS VERTICAIS</span>
+            <h3>Entorte o ritmo!</h3>
+            <p>O meio do fole fica preso. Dois lados para cima fazem uma barriga; dois para baixo fazem um morro. Para a curva, basta deixar um lado claramente acima e o outro abaixo — não precisa alcançar um ponto exato.</p>
+          </article>
+          <article class="tutorial-page">
+            <div class="tutorial-visual timing-demo"><div class="falling-demo"><img src="assets/frames/sanfona_totalmente_aberta.png?v=0.4.3" alt="" /></div><div class="demo-line">AGORA!</div></div>
+            <span class="eyebrow">NO TEMPO DA MÚSICA</span>
+            <h3>Acerte a batida!</h3>
+            <p>Chegue pela direção das setas e firme a pose com os dois dedos quando ela tocar a linha dourada. Dez erros seguidos encerram o show.</p>
+          </article>
+        </div>
+        <div class="tutorial-dots" id="tutorial-dots"><i class="active"></i><i></i><i></i><i></i></div>
+        <button id="tutorial-next" class="button button-primary" type="button">Próximo <span>›</span></button>
+      </section>
+
+      <div id="modal" class="modal" hidden>
+        <div class="modal-card">
+          <span id="modal-kicker" class="eyebrow">PAUSA</span>
+          <h2 id="modal-title">Fole descansando</h2>
+          <p id="modal-copy">Respire fundo e volte no compasso.</p>
+          <div id="modal-score" class="modal-score" hidden><small>PONTUAÇÃO</small><strong>0</strong></div>
+          <button id="resume-button" class="button button-primary" type="button">Continuar</button>
+          <button id="restart-button" class="button button-secondary" type="button" hidden>Tocar de novo</button>
+          <button id="recalibrate-button" class="text-button" type="button" hidden>Recalibrar câmera</button>
+          <button id="quit-button" class="text-button" type="button">Voltar à seleção</button>
+        </div>
+      </div>
+
+      <audio id="music" preload="auto" src="musicas/safona_cristovao.m4a?v=0.4.3"></audio>
+      <audio id="sfx-defeat" preload="auto" src="sons/derrota.m4a?v=0.4.3"></audio>
+      <audio id="sfx-title" preload="auto" src="sons/tile_screen.m4a?v=0.4.3"></audio>
+      <audio id="sfx-victory" preload="auto" src="sons/vitoria.m4a?v=0.4.3"></audio>
+    </main>
+    <script src="vendor/three.min.js?v=0.4.3"></script>
+    <script src="accordion-3d.js?v=0.4.3"></script>
+    <script src="vendor/aruco/cv.js?v=0.4.3"></script>
+    <script src="vendor/aruco/aruco.js?v=0.4.3"></script>
+    <script src="vendor/aruco/dictionary.js?v=0.4.3"></script>
+    <script src="camera-control.js?v=0.4.3"></script>
+    <script src="game.js?v=0.4.3"></script>
+  <section id="offline-panel" aria-label="Instalação e modo offline">
+      <div class="offline-card">
+        <h2>Leve o forró com você</h2>
+        <p id="offline-status" role="status">Preparando os arquivos offline…</p>
+        <p id="offline-help">No iPhone: abra este link no Safari, toque em Compartilhar e em Adicionar à Tela de Início. Abra pelo ícone com internet e espere a confirmação antes de desconectar.</p>
+        <small>O download inicial tem cerca de 15 MB. A câmera é processada no aparelho e continua precisando da sua permissão. Se o navegador apagar os dados do site, será necessário baixar os arquivos novamente.</small>
+        <p id="offline-record">Pontuação local, sem conexão com o ranking do catálogo.</p>
+        <button id="offline-install" type="button">Instalar no aparelho</button>
+        <button id="offline-update" type="button" hidden>Atualizar jogo</button>
+        <button id="offline-retry" type="button">Tentar novamente</button>
+        <button id="offline-close" type="button">Entrar no jogo</button>
+      </div>
+    </section>
+    <script src="./offline.js"></script>
+  </body>
+</html>
