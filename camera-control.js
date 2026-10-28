@@ -56,7 +56,7 @@
         // Normal local scripts provide a fallback without changing permissions.
         this.detectorMode = 'página';
         try {
-          const worker = new Worker('camera-worker.js?v=0.4.3');
+          const worker = new Worker('camera-worker.js?v=0.4.5');
           this.worker = worker;
           this.detectorMode = 'segundo plano';
           worker.onmessage = event => {
@@ -113,9 +113,10 @@
       if (this.busy && now - this.sentAt > 3000) {
         this.usePageDetector();
       }
-      if (!document.hidden && !this.busy && this.video.readyState >= 2 && this.video.currentTime !== this.lastVideoTime && now - (this.sentAt || 0) >= 50) {
+      const interval = Math.max(50, Math.min(100, (this.processingAverage || 0) * 2));
+      if (!document.hidden && !this.busy && this.video.readyState >= 2 && this.video.currentTime !== this.lastVideoTime && now - (this.sentAt || 0) >= interval) {
         this.lastVideoTime = this.video.currentTime;
-        const scale = Math.min(1, (this.worker ? 800 : 640) / this.video.videoWidth);
+        const scale = Math.min(1, 640 / this.video.videoWidth);
         const width = Math.round(this.video.videoWidth * scale);
         const height = Math.round(this.video.videoHeight * scale);
         if (this.canvas.width !== width || this.canvas.height !== height) {
@@ -145,6 +146,8 @@
       this.busy = false;
       if (error) { this.fail('Falha no reconhecimento dos marcadores. Tente abrir a câmera novamente.'); return; }
       this.processingMs = Math.round(performance.now() - capturedAt);
+      this.processingAverage = (this.processingAverage ?? this.processingMs) * .8 + this.processingMs * .2;
+      this.poseCacheValid = false;
       const pair = [0, 1].map(id => markers.filter(m => m.id === id));
       // Duplicated IDs and tiny/out-of-frame squares are never trusted.
       const valid = pair.every(group => group.length === 1 && group[0].corners.every((p, i, corners) =>
@@ -167,9 +170,13 @@
       this.onFrame(this);
     }
     draw(markers) {
+      if (!document.querySelector('#camera-screen').classList.contains('active')) return;
       const canvas = this.preview;
-      canvas.width = this.canvas.width; canvas.height = this.canvas.height;
+      if (canvas.width !== this.canvas.width || canvas.height !== this.canvas.height) {
+        canvas.width = this.canvas.width; canvas.height = this.canvas.height;
+      }
       const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (const marker of markers) {
         ctx.strokeStyle = marker.id === 0 ? '#00ffcc' : '#ffd75f';
         ctx.lineWidth = 3;
@@ -180,7 +187,7 @@
     }
     capture(id) {
       const recent = this.history.filter(s => performance.now() - s.time < 850);
-      if (!this.tracked || recent.length < 8 || recent.at(-1).time - recent[0].time < 550) {
+      if (!this.tracked || recent.length < 5 || recent.at(-1).time - recent[0].time < 550) {
         throw new Error('Mantenha os dois marcadores visíveis e firmes por um segundo.');
       }
       const mean = average(recent.map(s => s.points));
@@ -196,6 +203,7 @@
         }
       }
       this.templates[id] = mean;
+      this.poseCacheValid = false;
     }
     score(id) {
       if (!this.tracked || !this.templates[id]) return Infinity;
@@ -205,8 +213,12 @@
       return Math.max(...this.points.map((p, i) => distance(p, target[i]) / tolerance));
     }
     pose() {
+      if (!this.tracked) return null;
+      if (this.poseCacheValid) return this.cachedPose;
       const ranked = Object.keys(this.templates).map(id => ({ id, score: this.score(id) })).sort((a,b) => a.score - b.score);
-      return ranked[0]?.score <= 1 && (!ranked[1] || ranked[1].score - ranked[0].score > .12) ? ranked[0].id : null;
+      this.cachedPose = ranked[0]?.score <= 1 && (!ranked[1] || ranked[1].score - ranked[0].score > .12) ? ranked[0].id : null;
+      this.poseCacheValid = true;
+      return this.cachedPose;
     }
     matches(id) { return this.calibrated && this.pose() === id; }
     opening() {

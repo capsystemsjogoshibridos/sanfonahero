@@ -18,12 +18,12 @@
       this.lastRight = { x: .68, y: .73 };
 
       this.renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: "high-performance" });
-      this.renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+      this.renderer.setPixelRatio(Math.min(1.5, window.devicePixelRatio || 1));
       this.renderer.setClearColor(0x000000, 0);
       this.renderer.outputColorSpace = THREE.SRGBColorSpace;
       this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
       this.renderer.toneMappingExposure = 1.18;
-      this.renderer.shadowMap.enabled = true;
+      this.renderer.shadowMap.enabled = false;
       this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
       this.scene = new THREE.Scene();
@@ -38,7 +38,12 @@
       this.addMagicWaves();
 
       this.animate = this.animate.bind(this);
-      requestAnimationFrame(this.animate);
+      this.active = false;
+      this.dirty = true;
+      this.lastRender = -Infinity;
+      this.dummy = new THREE.Object3D();
+      this.axisY = new THREE.Vector3(0, 1, 0);
+      this.direction = new THREE.Vector3();
     }
 
     addLights() {
@@ -94,7 +99,9 @@
       this.root.add(this.ribs);
 
       this.spineMaterial = new THREE.MeshBasicMaterial({ color: 0xffce59, transparent: true, opacity: .74, blending: THREE.AdditiveBlending, depthWrite: false });
-      this.spine = new THREE.Mesh(new THREE.BufferGeometry(), this.spineMaterial);
+      this.spine = new THREE.InstancedMesh(new THREE.CylinderGeometry(.052, .052, 1, 6), this.spineMaterial, 24);
+      this.spine.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+      this.spine.frustumCulled = false;
       this.root.add(this.spine);
 
       // Este medalhão marca o ponto que prende o meio do fole à tela.
@@ -112,6 +119,7 @@
       this.contactShadow = new THREE.Mesh(new THREE.PlaneGeometry(7.5, 2.8), shadowMaterial);
       this.contactShadow.position.set(0, -2.05, -1.2);
       this.contactShadow.rotation.x = -.08;
+      this.contactShadow.visible = false;
       this.root.add(this.contactShadow);
     }
 
@@ -256,6 +264,9 @@
 
     resize() {
       const rect = this.zone.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      this.zoneRect = rect;
+      this.appRect = this.app.getBoundingClientRect();
       const width = Math.max(1, Math.round(rect.width));
       const height = Math.max(1, Math.round(rect.height));
       if (this.lastWidth === width && this.lastHeight === height) return;
@@ -269,12 +280,12 @@
       this.camera.top = this.viewHeight / 2;
       this.camera.bottom = -this.viewHeight / 2;
       this.camera.updateProjectionMatrix();
-      this.update(this.lastLeft, this.lastRight);
+      this.dirty = true;
     }
 
     screenToWorld(position) {
-      const appRect = this.app.getBoundingClientRect();
-      const zoneRect = this.zone.getBoundingClientRect();
+      const appRect = this.appRect;
+      const zoneRect = this.zoneRect;
       const pixelX = position.x * appRect.width + appRect.left - zoneRect.left;
       const pixelY = position.y * appRect.height + appRect.top - zoneRect.top;
       return new THREE.Vector3(
@@ -285,8 +296,20 @@
     }
 
     update(left, right) {
+      if (Math.abs(left.x - this.lastLeft.x) + Math.abs(left.y - this.lastLeft.y) + Math.abs(right.x - this.lastRight.x) + Math.abs(right.y - this.lastRight.y) < .0005) return;
       this.lastLeft = { ...left };
       this.lastRight = { ...right };
+      this.dirty = true;
+    }
+
+    setActive(active) {
+      if (active === this.active) return;
+      this.active = active;
+      cancelAnimationFrame(this.raf);
+      if (active) { this.resize(); this.raf = requestAnimationFrame(this.animate); }
+    }
+
+    applyPose(left, right) {
       const leftWorld = this.screenToWorld(left);
       const rightWorld = this.screenToWorld(right);
       const anchor = this.screenToWorld({ x: .5, y: .72 });
@@ -396,19 +419,30 @@
         addQuad(bottom[index + 1], bottom[index], bottom[index].clone().setZ(bottom[index].z - .66), bottom[index + 1].clone().setZ(bottom[index + 1].z - .66), edgeColor);
       }
 
-      const geometry = new THREE.BufferGeometry();
-      geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
-      geometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
+      const geometry = this.bellowsMesh.geometry;
+      if (!geometry.getAttribute('position')) {
+        geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3).setUsage(THREE.DynamicDrawUsage));
+        geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+      } else {
+        geometry.getAttribute('position').array.set(positions);
+        geometry.getAttribute('position').needsUpdate = true;
+      }
       geometry.computeVertexNormals();
-      this.bellowsMesh.geometry.dispose();
-      this.bellowsMesh.geometry = geometry;
+      geometry.computeBoundingSphere();
 
-      const spinePoints = points.map((point) => point.clone().setZ(point.z + .96));
-      const spineGeometry = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(spinePoints), 48, .052, 7, false);
-      this.spine.geometry.dispose();
-      this.spine.geometry = spineGeometry;
-
-      const dummy = new THREE.Object3D();
+      const dummy = this.dummy;
+      for (let i = 0; i < points.length - 1; i++) {
+        const a = points[i], b = points[i + 1];
+        this.direction.subVectors(b, a);
+        const length = this.direction.length();
+        dummy.position.copy(a).add(b).multiplyScalar(.5);
+        dummy.position.z += .96;
+        dummy.quaternion.setFromUnitVectors(this.axisY, this.direction.normalize());
+        dummy.scale.set(1, Math.max(.001, length), 1);
+        dummy.updateMatrix();
+        this.spine.setMatrixAt(i, dummy.matrix);
+      }
+      this.spine.instanceMatrix.needsUpdate = true;
       for (let index = 0; index < this.ribs.count; index++) {
         const pointIndex = Math.round(index / (this.ribs.count - 1) * (count - 1));
         const previous = points[Math.max(0, pointIndex - 1)];
@@ -426,6 +460,7 @@
     }
 
     pulse() {
+      if (!this.zoneRect) return;
       this.pulseStartedAt = performance.now();
       const middle = this.screenToWorld({ x: .5, y: .72 });
       this.waveGroup.position.set(middle.x, middle.y, .5);
@@ -433,6 +468,14 @@
     }
 
     animate(now) {
+      if (!this.active) return;
+      this.raf = requestAnimationFrame(this.animate);
+      if (document.hidden || now - this.lastRender < 1000 / 30 - 1) return;
+      this.lastRender = now;
+      if (this.dirty && this.zoneRect) {
+        this.applyPose(this.lastLeft, this.lastRight);
+        this.dirty = false;
+      }
       const pulseAge = now - this.pulseStartedAt;
       if (pulseAge < 720) {
         const progress = pulseAge / 720;
@@ -452,7 +495,6 @@
 
       this.root.rotation.x = -.045 + Math.sin(now * .0014) * .008;
       this.renderer.render(this.scene, this.camera);
-      requestAnimationFrame(this.animate);
     }
   }
 
