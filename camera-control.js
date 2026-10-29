@@ -23,6 +23,7 @@
     }
     get active() { return !!this.stream?.getVideoTracks().some(track => track.readyState === 'live'); }
     get tracked() { return this.active && !!this.points && performance.now() - this.lastSeen < 250; }
+    get cursorTracked() { return this.active && !!this.cursorPoint && performance.now() - this.cursorSeen < 250; }
     get calibrated() { return ['closed', 'open', 'up', 'down'].every(id => !!this.templates[id]); }
     restoreCalibration() {
       if (this.calibrated) return;
@@ -73,7 +74,7 @@
         // Normal local scripts provide a fallback without changing permissions.
         this.detectorMode = 'página';
         try {
-          const worker = new Worker('camera-worker.js?v=0.5.0');
+          const worker = new Worker('camera-worker.js?v=0.5.1');
           this.worker = worker;
           this.detectorMode = 'segundo plano';
           worker.onmessage = event => {
@@ -119,6 +120,8 @@
       this.stream?.getTracks().forEach(track => { track.onended = null; track.stop(); });
       this.stream = null;
       this.video.srcObject = null;
+      this.cursorPoint = null;
+      this.cursorSeen = -Infinity;
       this.points = null;
       this.lastSeen = -Infinity;
       this.history = [];
@@ -167,8 +170,17 @@
       this.poseCacheValid = false;
       const pair = [0, 1].map(id => markers.filter(m => m.id === id));
       // Duplicated IDs and tiny/out-of-frame squares are never trusted.
-      const valid = pair.every(group => group.length === 1 && group[0].corners.every((p, i, corners) =>
-        p.x > 3 && p.y > 3 && p.x < this.canvas.width - 3 && p.y < this.canvas.height - 3 && distance(p, corners[(i + 1) % 4]) >= 18));
+      const validMarker = group => group.length === 1 && group[0].corners.every((p, i, corners) =>
+        p.x > 3 && p.y > 3 && p.x < this.canvas.width - 3 && p.y < this.canvas.height - 3 && distance(p, corners[(i + 1) % 4]) >= 18);
+      const valid = pair.every(validMarker);
+      // Menus need only ID 1; gameplay and calibration still require both markers.
+      if(validMarker(pair[1]) && performance.now()-capturedAt<250) {
+        const corners=pair[1][0].corners;
+        const raw={x:corners.reduce((s,p)=>s+p.x,0)/4/this.canvas.width,y:corners.reduce((s,p)=>s+p.y,0)/4/this.canvas.height};
+        const old=this.cursorPoint && capturedAt-this.cursorSeen<250 ? this.cursorPoint : raw;
+        this.cursorPoint={x:old.x+(raw.x-old.x)*.45,y:old.y+(raw.y-old.y)*.45};
+        this.cursorSeen=capturedAt;
+      } else { this.cursorPoint=null; }
       this.draw(markers);
       if (valid && performance.now() - capturedAt < 250) {
         const raw = pair.map(([marker]) => ({
