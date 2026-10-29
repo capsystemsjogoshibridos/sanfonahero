@@ -26,16 +26,16 @@
   const FORROZEAR_BEATS = [2.01,2.6,3.51,4.11,5,5.94,6.54,7.53,8.75,9.5,10.05,11.42,11.96,12.69,13.46,14.56,15.32,16.06,16.81,17.57,18.33,19.25,20.75,21.5,22.25,22.82,24.03,25.25,26.42,27.5,28.46,29.75,30.5,31.25,31.85,33.02,33.69,34.46,35,36.03,37.1,38.2,38.98,40.78,41.39,42.5,43.29,44,44.6,45.5,46.07,46.63,47.57,48.78,49.53,50.28,50.93,52.06,52.81,53.39,54.03,54.54,55.08,55.66,56.19,56.94,57.87,58.82,60.02,60.78,61.29,61.81,62.56,63.52,64.06,64.81,65.57,66.31,67.06,67.82,68.57,69.16,69.78,70.82,72.03,72.78,74.03,74.57,75.33,76.05,76.63,77.28,78.13,78.78,80,80.57,81.13,82.08,83.42,84.03,84.54,85.34,85.92,86.56,87.5,88.27,89,89.77,90.31,91.27,91.84,92.38,93.5,94.06,95.27,95.94,97.26,98.01,98.57,99.32,100.28,101.57,103.1,103.81,104.57,105.51,106.47,107.03,107.56,108.53,109.07,109.81,110.57,111.32,112.06,113.06,113.57,114.31,114.91,116.28,116.79,117.54,118.09,118.63,119.56,120.5,121.07,121.99,122.75,123.32,124.53,125.21,125.75,127.26,127.81,128.57,129.17,129.92,130.66,131.27,132.13,132.7,133.48,134.05,135.32,136.06,136.85,137.89,138.72,140.28,140.94,141.53,142.27,143.01,143.56,144.52,145.29,145.81,146.38,147.87,148.81,149.41,150.03,150.53,151.27,151.82,152.57,153.54,154.07,154.82,155.57,156.54,157.07,158.05,158.57,159.32,159.93,161.28,162.03,162.88,163.65,164.28,165.02,166.09,166.85,167.41,167.97,168.66,170.28,170.93,171.91,172.53,173.24,173.76,174.73,175.3,176.04,176.78,177.32,178.26,178.84,179.55,180.32,181.08,181.63,182.6,183.67,185,185.56,186.31,186.91,187.53,188.78,189.5,190.08,190.83,191.56,192.86,194.01,194.56,195.17,195.78,196.82,197.41,198.5,199.81,200.58,201.54,202.07,203.25,203.79,204.53,205.29,205.81,206.41,207.84,208.44,209.03,209.75,210.51,211.46,212,212.75,213.5,214.41,215.27,215.89,216.5,217.06,217.81,218.41,219.5,220.26,221.6,222.35,223.25,223.83,224.77,225.88,227.18,227.78,228.51,229.53,230.38,231.32,232.1,232.84,234.03,234.78,235.43,236.25,236.76,237.31,238.49,239,239.79,240.7,241.25,241.97,242.57,243.13,244.12,244.81,246.03,246.54,247.29,248.01,248.57,249.31,249.88,250.45,251.04,251.77,252.33,253.53,254.04,254.57,255.32,255.88,256.81,257.57,258.54,259.25,259.82,260.42,261.02,261.54,262.06,263.03,263.75,264.53,265.07,265.81,266.4,266.93,267.71,268.29,269.28,270.5,271.09,272.28,273.03,273.67,274.43,275.29,275.94,276.5,277.09,278.28,278.93,279.5,280.05,281,281.58,282.44,283.36,283.96];
 
   const SONGS = [
-    { id: "cristovao", title: "Sanfona de Cristóvão", description: "Forró encantado • CAP Systems", src: "musicas/safona_cristovao.m4a?v=0.4.7", label: "SH", theme: "sertao", difficulty: "ARRETADA", peppers: 3, beats: CRISTOVAO_BEATS, fallTime: 2.55, scoreMultiplier: 1 },
-    { id: "cabra", title: "O Cabra do Celular", description: "Forró de salão • Celular na roda", src: "musicas/cabra_celular.m4a?v=0.4.7", label: "CC", theme: "celular", difficulty: "ACOCHADA", peppers: 4, beats: CABRA_BEATS, fallTime: 2.45, scoreMultiplier: 1.15 },
-    { id: "forrozear", title: "Aprendendo a Forrozear", description: "Baile coreografado • Passo ligeiro", src: "musicas/aprendendo_forrozear.m4a?v=0.4.7", label: "AF", theme: "baile", difficulty: "INVOCADA", peppers: 5, beats: FORROZEAR_BEATS, fallTime: 2.35, scoreMultiplier: 1.3 }
+    { id: "cristovao", title: "Sanfona de Cristóvão", description: "Forró encantado • CAP Systems", src: "musicas/safona_cristovao.m4a?v=0.4.9", label: "SH", theme: "sertao", difficulty: "ARRETADA", peppers: 3, beats: CRISTOVAO_BEATS, fallTime: 2.55, scoreMultiplier: 1 },
+    { id: "cabra", title: "O Cabra do Celular", description: "Forró de salão • Celular na roda", src: "musicas/cabra_celular.m4a?v=0.4.9", label: "CC", theme: "celular", difficulty: "ACOCHADA", peppers: 4, beats: CABRA_BEATS, fallTime: 2.45, scoreMultiplier: 1.15 },
+    { id: "forrozear", title: "Aprendendo a Forrozear", description: "Baile coreografado • Passo ligeiro", src: "musicas/aprendendo_forrozear.m4a?v=0.4.9", label: "AF", theme: "baile", difficulty: "INVOCADA", peppers: 5, beats: FORROZEAR_BEATS, fallTime: 2.35, scoreMultiplier: 1.3 }
   ];
 
   const GESTURES = [
-    { id: "open", name: "Toda aberta", symbol: "↔", frame: "assets/frames/sanfona_totalmente_aberta.png?v=0.4.7", left: [.14, .72], right: [.86, .72], xTolerance: .11, yTolerance: .09 },
-    { id: "closed", name: "Toda fechada", symbol: "→←", frame: "assets/frames/sanfona_totalmente_fechada.png?v=0.4.7", left: [.38, .72], right: [.62, .72], xTolerance: .095, yTolerance: .09 },
-    { id: "up", name: "Tudo pra cima", symbol: "↑ ↑", frame: "assets/frames/sanfona_tudo_cima.png?v=0.4.7", left: [.32, .57], right: [.68, .57], xTolerance: .115, yTolerance: .085 },
-    { id: "down", name: "Tudo pra baixo", symbol: "↓ ↓", frame: "assets/frames/sanfona_tudo_baixo.png?v=0.4.7", left: [.32, .88], right: [.68, .88], xTolerance: .115, yTolerance: .085 },
+    { id: "open", name: "Toda aberta", symbol: "↔", frame: "assets/frames/sanfona_totalmente_aberta.png?v=0.4.9", left: [.14, .72], right: [.86, .72], xTolerance: .11, yTolerance: .09 },
+    { id: "closed", name: "Toda fechada", symbol: "→←", frame: "assets/frames/sanfona_totalmente_fechada.png?v=0.4.9", left: [.38, .72], right: [.62, .72], xTolerance: .095, yTolerance: .09 },
+    { id: "up", name: "Tudo pra cima", symbol: "↑ ↑", frame: "assets/frames/sanfona_tudo_cima.png?v=0.4.9", left: [.32, .57], right: [.68, .57], xTolerance: .115, yTolerance: .085 },
+    { id: "down", name: "Tudo pra baixo", symbol: "↓ ↓", frame: "assets/frames/sanfona_tudo_baixo.png?v=0.4.9", left: [.32, .88], right: [.68, .88], xTolerance: .115, yTolerance: .085 },
   ];
 
   const FEEDBACK_EXPRESSIONS = {
@@ -234,8 +234,14 @@
     if (previousScreen === "title-screen" && id !== "title-screen") stopSound(sounds.title);
     screens.forEach((screen) => screen.classList.toggle("active", screen.id === id));
     state.screen = id;
+    const video = $('#camera-video');
+    const videoHost = id === 'game-screen' && controlMode === 'camera' ? $('#game-camera-view') : $('.camera-preview');
+    if (video.parentElement !== videoHost) {
+      videoHost.prepend(video);
+      if (camera.active) video.play().catch(() => { $('#camera-game-status').textContent = 'Toque em Continuar para retomar a câmera.'; });
+    }
     layoutMetrics = null;
-    accordion3d?.setActive(id === 'game-screen' && !state.paused);
+    accordion3d?.setActive(id === 'game-screen' && !state.paused && controlMode === 'touch');
     if (id === 'title-screen' && controlMode === 'camera') { calibrationRun++; camera.stop(); }
     if (id === "title-screen" && previousScreen !== id) playSound("title", .88);
   }
@@ -291,17 +297,17 @@
 
   async function preloadGame() {
     const imageAssets = [
-      "assets/cap-systems-logo.png?v=0.4.7",
-      "assets/sertao-magico.png?v=0.4.7",
-      "assets/cabra-celular.png?v=0.4.7",
-      "assets/aprendendo-forrozear.png?v=0.4.7",
+      "assets/cap-systems-logo.png?v=0.4.9",
+      "assets/sertao-magico.png?v=0.4.9",
+      "assets/cabra-celular.png?v=0.4.9",
+      "assets/aprendendo-forrozear.png?v=0.4.9",
       ...GESTURES.map((gesture) => gesture.frame)
     ];
     const audioAssets = [
       ...SONGS.map((song) => song.src),
-      "sons/derrota.m4a?v=0.4.7",
-      "sons/tile_screen.m4a?v=0.4.7",
-      "sons/vitoria.m4a?v=0.4.7"
+      "sons/derrota.m4a?v=0.4.9",
+      "sons/tile_screen.m4a?v=0.4.9",
+      "sons/vitoria.m4a?v=0.4.9"
     ];
     const total = imageAssets.length + audioAssets.length;
     let completed = 0;
@@ -434,7 +440,7 @@
     if (resetState) resetGameState();
     const sessionGeneration = state.sessionGeneration;
     layoutAccordion();
-    accordion3d?.setActive(true);
+    accordion3d?.setActive(controlMode === 'touch');
     $("#countdown").classList.remove("hidden");
     const count = $("#countdown strong");
     const label = $("#countdown span");
@@ -876,7 +882,7 @@
     if (!state.running) return;
     state.paused = false;
     music.play().then(() => { if (state.running && !state.paused) state.raf = requestAnimationFrame(gameLoop); }).catch(() => { pauseGame(); $('#modal-copy').textContent = 'Não foi possível retomar o áudio. Toque em Continuar novamente.'; });
-    accordion3d?.setActive(true);
+    accordion3d?.setActive(controlMode === 'touch');
   }
 
   function restartGame() {

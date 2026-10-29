@@ -73,7 +73,7 @@
         // Normal local scripts provide a fallback without changing permissions.
         this.detectorMode = 'página';
         try {
-          const worker = new Worker('camera-worker.js?v=0.4.7');
+          const worker = new Worker('camera-worker.js?v=0.4.9');
           this.worker = worker;
           this.detectorMode = 'segundo plano';
           worker.onmessage = event => {
@@ -208,7 +208,7 @@
         throw new Error('Mantenha os dois marcadores visíveis e firmes por um segundo.');
       }
       const mean = average(recent.map(s => s.points));
-      if (recent.some(s => s.points.some((p, i) => distance(p, mean[i]) > .018))) {
+      if (recent.some(s => s.points.some((p, i) => distance(p, mean[i]) > .054))) {
         throw new Error('Houve movimento durante a captura. Segure a pose firme e tente novamente.');
       }
       if (id === 'open' && distance(mean[0], mean[1]) < distance(this.templates.closed[0], this.templates.closed[1]) + .06) {
@@ -227,14 +227,15 @@
       if (!this.tracked || !this.templates[id]) return Infinity;
       const target = this.templates[id];
       const span = this.templates.open ? distance(...this.templates.open) : .5;
-      const tolerance = clamp(span * .12, .025, .075);
+      // Wider positional window; nearest-pose comparison still separates gestures.
+      const tolerance = clamp(span * .36, .075, .225);
       return Math.max(...this.points.map((p, i) => distance(p, target[i]) / tolerance));
     }
     pose() {
       if (!this.tracked) return null;
       if (this.poseCacheValid) return this.cachedPose;
       const ranked = Object.keys(this.templates).map(id => ({ id, score: this.score(id) })).sort((a,b) => a.score - b.score);
-      this.cachedPose = ranked[0]?.score <= 1 && (!ranked[1] || ranked[1].score - ranked[0].score > .12) ? ranked[0].id : null;
+      this.cachedPose = ranked[0]?.score <= 1 && (!ranked[1] || ranked[1].score - ranked[0].score > .04) ? ranked[0].id : null;
       this.poseCacheValid = true;
       return this.cachedPose;
     }

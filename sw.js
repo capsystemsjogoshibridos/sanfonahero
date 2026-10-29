@@ -1,5 +1,5 @@
 'use strict';
-const REVISION = "44b0a67b665c1deb";
+const REVISION = "010b993604b10df4";
 const FILES = ["accordion-3d.js", "app-icon.png", "assets/aprendendo-forrozear.png", "assets/cabra-celular.png", "assets/cap-systems-logo.png", "assets/frames/sanfona_aberta_direita.png", "assets/frames/sanfona_aberta_esquerda.png", "assets/frames/sanfona_curva_direita.png", "assets/frames/sanfona_curva_esquerda.png", "assets/frames/sanfona_totalmente_aberta.png", "assets/frames/sanfona_totalmente_fechada.png", "assets/frames/sanfona_tudo_baixo.png", "assets/frames/sanfona_tudo_cima.png", "assets/sertao-magico.png", "camera-control.js", "camera-worker.js", "fit-screen.js", "game.js", "index.html", "manifest.webmanifest", "musicas/aprendendo_forrozear.m4a", "musicas/cabra_celular.m4a", "musicas/safona_cristovao.m4a", "offline.css", "offline.js", "sons/derrota.m4a", "sons/tile_screen.m4a", "sons/vitoria.m4a", "styles.css", "vendor/aruco/LICENSE.json", "vendor/aruco/aruco.js", "vendor/aruco/cv.js", "vendor/aruco/dictionary.js", "vendor/three.min.js"];
 const BASE = new URL('./', self.location.href);
 const PREFIX = 'sanfona-offline:' + BASE.pathname + ':';
