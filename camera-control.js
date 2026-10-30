@@ -168,6 +168,16 @@
       this.processingMs = Math.round(performance.now() - capturedAt);
       this.processingAverage = (this.processingAverage ?? this.processingMs) * .8 + this.processingMs * .2;
       this.poseCacheValid = false;
+      // The detector can return two contours for one printed square at some pixel
+      // alignments. Merge only almost-identical boxes; separate duplicate IDs remain invalid.
+      const bounds=m=>({left:Math.min(...m.corners.map(p=>p.x)),right:Math.max(...m.corners.map(p=>p.x)),top:Math.min(...m.corners.map(p=>p.y)),bottom:Math.max(...m.corners.map(p=>p.y))});
+      markers=markers.filter((m,i,all)=>!all.slice(0,i).some(other=>{
+        if(other.id!==m.id) return false;
+        const a=bounds(m),b=bounds(other);
+        const intersection=Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left))*Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));
+        const union=(a.right-a.left)*(a.bottom-a.top)+(b.right-b.left)*(b.bottom-b.top)-intersection;
+        return union>0 && intersection/union>.85;
+      }));
       const pair = [0, 1].map(id => markers.filter(m => m.id === id));
       // Duplicated IDs and tiny/out-of-frame squares are never trusted.
       const validMarker = group => group.length === 1 && group[0].corners.every((p, i, corners) =>

@@ -480,3 +480,24 @@ button { font: inherit; }
 .landscape .camera-control .score-block strong { font-size: 50px; }
 .landscape .camera-control .streak-block { top: 76%; }
 .landscape .camera-control .danger-pips { grid-template-columns: repeat(10,minmax(0,1fr)); }
+/* Constant blur; only transforms move, avoiding per-frame blur recalculation. */
+.game-bg { filter: blur(2.5px) brightness(.72); animation: stage-pan 20s ease-in-out infinite alternate !important; animation-play-state: paused !important; }
+.kaleido-a { width: min(78%,650px); left: -16%; top: 5%; background: var(--scene-image) center / cover; filter: none; opacity: .19; animation: stage-prism 32s linear infinite !important; animation-play-state: paused !important; }
+.kaleido-a::before, .kaleido-a::after { background: inherit; border: 0; opacity: .55; }
+.kaleido-a::before { transform: scaleX(-1) rotate(60deg); }
+.kaleido-a::after { transform: rotate(120deg); }
+.bellows-sun { opacity: .13; animation: stage-prism 52s linear infinite reverse !important; animation-play-state: paused !important; }
+.game-screen.active .game-bg, .game-screen.active .kaleido-a, .game-screen.active .bellows-sun { animation-play-state: running !important; will-change: transform; }
+#app:has(#modal:not([hidden])) .game-bg, #app:has(#modal:not([hidden])) .kaleido-a, #app:has(#modal:not([hidden])) .bellows-sun,
+.game-screen:has(.countdown:not(.hidden)) .game-bg, .game-screen:has(.countdown:not(.hidden)) .kaleido-a, .game-screen:has(.countdown:not(.hidden)) .bellows-sun { animation-play-state: paused !important; }
+@keyframes stage-pan { from { transform: translate3d(-1.5%,-1%,0) scale(1.06); } to { transform: translate3d(1.5%,1%,0) scale(1.12); } }
+@keyframes stage-prism { to { transform: rotate(360deg); } }
+.game-note { width: min(96%,300px); height: auto; margin-left: 0; translate: -50% 0; transform-origin: 50% 0; }
+.note-frame { width: 100%; height: auto; aspect-ratio: 174 / 102; }
+.game-note b { margin-top: 2px; font-size: 14px; }
+.camera-control .note-lane, .camera-control .hit-line { left: 50%; }
+@media (prefers-reduced-motion: reduce) { .game-bg, .kaleido-a, .bellows-sun { animation: none !important; } }
+.studio-skip img { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 70%; height: 70%; max-width: 500px; max-height: none; }
+.title-screen::before { display: block; content: ''; position: absolute; inset: -20px; background: url('assets/title-background.png?v=0.6.0') center / cover; filter: blur(18px) brightness(.35); z-index: 0; }
+.title-screen::after { content: ''; position: absolute; inset: 0; background: url('assets/title-background.png?v=0.6.0') center / contain no-repeat; pointer-events: none; z-index: 1; }
+.title-screen .title-actions { position: relative; z-index: 2; }

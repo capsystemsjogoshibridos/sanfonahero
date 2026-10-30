@@ -621,8 +621,9 @@
       if (!note.element) continue;
 
       const progress = 1 - timeToHit / fallTime;
-      const y = progress * travelDistance - 90;
-      const scale = .68 + Math.max(0, progress) * .32;
+      const scale = .82 + Math.max(0, progress) * .18;
+      const imageHeight = Math.min(300, lane.clientWidth * .96) * 102 / 174;
+      const y = progress * travelDistance - imageHeight * .5 * scale;
       note.element.style.transform = `translateY(${y}px) scale(${scale})`;
 
       if (!note.judged && judgmentTime >= note.time - .5 && judgmentTime <= note.time + .4) {
