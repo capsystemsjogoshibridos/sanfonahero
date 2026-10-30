@@ -15,3 +15,4 @@
 .landscape #offline-update { grid-row: 3; }
 .landscape #offline-retry { grid-row: 4; }
 .landscape #offline-close { grid-row: 5; }
+#mode-screen #offline-open { position: static; margin-top: 8px; }

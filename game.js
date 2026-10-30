@@ -25,17 +25,20 @@
 
   const FORROZEAR_BEATS = [2.01,2.6,3.51,4.11,5,5.94,6.54,7.53,8.75,9.5,10.05,11.42,11.96,12.69,13.46,14.56,15.32,16.06,16.81,17.57,18.33,19.25,20.75,21.5,22.25,22.82,24.03,25.25,26.42,27.5,28.46,29.75,30.5,31.25,31.85,33.02,33.69,34.46,35,36.03,37.1,38.2,38.98,40.78,41.39,42.5,43.29,44,44.6,45.5,46.07,46.63,47.57,48.78,49.53,50.28,50.93,52.06,52.81,53.39,54.03,54.54,55.08,55.66,56.19,56.94,57.87,58.82,60.02,60.78,61.29,61.81,62.56,63.52,64.06,64.81,65.57,66.31,67.06,67.82,68.57,69.16,69.78,70.82,72.03,72.78,74.03,74.57,75.33,76.05,76.63,77.28,78.13,78.78,80,80.57,81.13,82.08,83.42,84.03,84.54,85.34,85.92,86.56,87.5,88.27,89,89.77,90.31,91.27,91.84,92.38,93.5,94.06,95.27,95.94,97.26,98.01,98.57,99.32,100.28,101.57,103.1,103.81,104.57,105.51,106.47,107.03,107.56,108.53,109.07,109.81,110.57,111.32,112.06,113.06,113.57,114.31,114.91,116.28,116.79,117.54,118.09,118.63,119.56,120.5,121.07,121.99,122.75,123.32,124.53,125.21,125.75,127.26,127.81,128.57,129.17,129.92,130.66,131.27,132.13,132.7,133.48,134.05,135.32,136.06,136.85,137.89,138.72,140.28,140.94,141.53,142.27,143.01,143.56,144.52,145.29,145.81,146.38,147.87,148.81,149.41,150.03,150.53,151.27,151.82,152.57,153.54,154.07,154.82,155.57,156.54,157.07,158.05,158.57,159.32,159.93,161.28,162.03,162.88,163.65,164.28,165.02,166.09,166.85,167.41,167.97,168.66,170.28,170.93,171.91,172.53,173.24,173.76,174.73,175.3,176.04,176.78,177.32,178.26,178.84,179.55,180.32,181.08,181.63,182.6,183.67,185,185.56,186.31,186.91,187.53,188.78,189.5,190.08,190.83,191.56,192.86,194.01,194.56,195.17,195.78,196.82,197.41,198.5,199.81,200.58,201.54,202.07,203.25,203.79,204.53,205.29,205.81,206.41,207.84,208.44,209.03,209.75,210.51,211.46,212,212.75,213.5,214.41,215.27,215.89,216.5,217.06,217.81,218.41,219.5,220.26,221.6,222.35,223.25,223.83,224.77,225.88,227.18,227.78,228.51,229.53,230.38,231.32,232.1,232.84,234.03,234.78,235.43,236.25,236.76,237.31,238.49,239,239.79,240.7,241.25,241.97,242.57,243.13,244.12,244.81,246.03,246.54,247.29,248.01,248.57,249.31,249.88,250.45,251.04,251.77,252.33,253.53,254.04,254.57,255.32,255.88,256.81,257.57,258.54,259.25,259.82,260.42,261.02,261.54,262.06,263.03,263.75,264.53,265.07,265.81,266.4,266.93,267.71,268.29,269.28,270.5,271.09,272.28,273.03,273.67,274.43,275.29,275.94,276.5,277.09,278.28,278.93,279.5,280.05,281,281.58,282.44,283.36,283.96];
 
+  const NEVE_BEATS = [4.18, 5.0, 6.86, 7.56, 8.56, 9.52, 10.2, 10.86, 11.54, 12.38, 13.22, 13.88, 14.38, 15.04, 15.72, 17.54, 18.06, 18.72, 19.38, 20.22, 20.9, 21.56, 22.08, 22.9, 23.74, 24.4, 25.08, 25.74, 26.24, 27.08, 27.58, 28.08, 29.1, 29.76, 30.26, 30.76, 31.76, 32.6, 33.1, 33.78, 34.46, 35.12, 35.62, 36.12, 37.14, 37.8, 38.8, 39.64, 40.14, 40.82, 41.48, 42.16, 43.16, 43.66, 44.16, 44.98, 45.82, 46.32, 47.16, 48.16, 49.0, 49.84, 50.52, 51.18, 52.02, 53.18, 53.68, 54.7, 55.68, 56.52, 57.2, 57.86, 58.54, 59.2, 59.7, 60.54, 61.04, 61.54, 62.54, 63.2, 64.04, 64.54, 65.04, 65.88, 66.88, 67.38, 68.56, 69.56, 70.38, 71.22, 71.9, 72.56, 73.24, 73.9, 74.4, 75.24, 75.92, 76.56, 77.42, 78.4, 79.24, 80.08, 80.58, 81.08, 81.58, 82.24, 83.24, 83.74, 84.58, 85.08, 85.76, 86.92, 87.58, 88.08, 88.58, 89.08, 89.9, 90.4, 91.26, 92.26, 93.26, 94.26, 95.26, 96.26, 97.08, 97.92, 98.42, 99.26, 99.76, 100.26, 101.08, 101.92, 102.42, 103.26, 103.76, 104.26, 105.08, 105.58, 106.42, 106.92, 107.74, 108.24, 109.26, 109.9, 110.42, 111.24, 111.9, 112.56, 113.24, 113.9, 114.4, 116.24, 116.74, 117.24, 117.9, 118.4, 119.38, 119.9, 120.4, 121.06, 122.38, 123.06, 123.72, 124.22, 125.04, 125.88, 126.54, 127.56, 128.54, 129.04, 129.54, 130.36, 131.2, 131.88, 132.54, 133.38, 134.36, 135.2, 135.7, 136.2, 136.88, 138.04, 138.7, 139.2, 139.7, 140.2, 141.2, 141.86, 142.54, 143.2, 143.7, 144.52, 145.2, 145.86, 146.36, 147.54, 148.2, 148.7, 149.2, 149.86, 150.36, 150.86, 151.7, 152.52, 153.02, 153.86, 154.36, 154.86, 155.68, 156.52, 157.2, 157.86, 159.2, 159.7, 160.2, 161.04, 162.2, 162.86, 163.7, 164.7, 165.7, 166.2, 167.04, 168.04, 168.7, 169.7];
+
   const SONGS = [
-    { id: "cristovao", title: "Sanfona de Cristóvão", description: "Forró encantado • CAP Systems", src: "musicas/safona_cristovao.m4a?v=0.5.1", label: "SH", theme: "sertao", difficulty: "ARRETADA", peppers: 3, beats: CRISTOVAO_BEATS, fallTime: 2.55, scoreMultiplier: 1 },
-    { id: "cabra", title: "O Cabra do Celular", description: "Forró de salão • Celular na roda", src: "musicas/cabra_celular.m4a?v=0.5.1", label: "CC", theme: "celular", difficulty: "ACOCHADA", peppers: 4, beats: CABRA_BEATS, fallTime: 2.45, scoreMultiplier: 1.15 },
-    { id: "forrozear", title: "Aprendendo a Forrozear", description: "Baile coreografado • Passo ligeiro", src: "musicas/aprendendo_forrozear.m4a?v=0.5.1", label: "AF", theme: "baile", difficulty: "INVOCADA", peppers: 5, beats: FORROZEAR_BEATS, fallTime: 2.35, scoreMultiplier: 1.3 }
+    { id: "cristovao", title: "Sanfona de Cristóvão", description: "Christopher de Assis Pereira", cover: "assets/sertao-magico.png?v=0.6.0", src: "musicas/safona_cristovao.m4a?v=0.6.0", label: "SH", theme: "sertao", difficulty: "ARRETADA", peppers: 3, beats: CRISTOVAO_BEATS, fallTime: 2.3, scoreMultiplier: 1 },
+    { id: "cabra", title: "O Cabra do Celular", description: "Christopher de Assis Pereira", cover: "assets/cabra-celular.png?v=0.6.0", src: "musicas/cabra_celular.m4a?v=0.6.0", label: "CC", theme: "celular", difficulty: "ACOCHADA", peppers: 4, beats: CABRA_BEATS, fallTime: 2.2, scoreMultiplier: 1.15 },
+    { id: "forrozear", title: "Aprendendo a Forrozear", description: "Christopher de Assis Pereira", cover: "assets/aprendendo-forrozear.png?v=0.6.0", src: "musicas/aprendendo_forrozear.m4a?v=0.6.0", label: "AF", theme: "baile", difficulty: "INVOCADA", peppers: 5, beats: FORROZEAR_BEATS, fallTime: 2.1, scoreMultiplier: 1.3 },
+    { id: "neve", title: "Forró Paralelo na Neve", description: "Jorge do Rojão feat. Christopher de Assis Pereira", cover: "assets/forro-neve.png?v=0.6.0", src: "musicas/forro_neve.m4a?v=0.6.0", label: "FN", theme: "neve", difficulty: "ARRETADA", peppers: 3, beats: NEVE_BEATS, fallTime: 2.25, scoreMultiplier: 1 }
   ];
 
   const GESTURES = [
-    { id: "open", name: "Toda aberta", symbol: "↔", frame: "assets/frames/sanfona_totalmente_aberta.png?v=0.5.1", left: [.14, .72], right: [.86, .72], xTolerance: .11, yTolerance: .09 },
-    { id: "closed", name: "Toda fechada", symbol: "→←", frame: "assets/frames/sanfona_totalmente_fechada.png?v=0.5.1", left: [.38, .72], right: [.62, .72], xTolerance: .095, yTolerance: .09 },
-    { id: "up", name: "Tudo pra cima", symbol: "↑ ↑", frame: "assets/frames/sanfona_tudo_cima.png?v=0.5.1", left: [.32, .57], right: [.68, .57], xTolerance: .115, yTolerance: .085 },
-    { id: "down", name: "Tudo pra baixo", symbol: "↓ ↓", frame: "assets/frames/sanfona_tudo_baixo.png?v=0.5.1", left: [.32, .88], right: [.68, .88], xTolerance: .115, yTolerance: .085 },
+    { id: "open", name: "Toda aberta", symbol: "↔", frame: "assets/frames/sanfona_totalmente_aberta.png?v=0.6.0", left: [.14, .72], right: [.86, .72], xTolerance: .11, yTolerance: .09 },
+    { id: "closed", name: "Toda fechada", symbol: "→←", frame: "assets/frames/sanfona_totalmente_fechada.png?v=0.6.0", left: [.38, .72], right: [.62, .72], xTolerance: .095, yTolerance: .09 },
+    { id: "up", name: "Tudo pra cima", symbol: "↑ ↑", frame: "assets/frames/sanfona_tudo_cima.png?v=0.6.0", left: [.32, .57], right: [.68, .57], xTolerance: .115, yTolerance: .085 },
+    { id: "down", name: "Tudo pra baixo", symbol: "↓ ↓", frame: "assets/frames/sanfona_tudo_baixo.png?v=0.6.0", left: [.32, .88], right: [.68, .88], xTolerance: .115, yTolerance: .085 },
   ];
 
   const FEEDBACK_EXPRESSIONS = {
@@ -148,9 +151,11 @@
       (root===offline || root===modal || ['title-screen','select-screen','tutorial-screen','camera-screen'].includes(state.screen)) &&
       !(state.screen==='camera-screen' && root!==offline && $('#camera-calibrate').disabled);
     const buttons=allowed ? [...root.querySelectorAll('button')].filter(b=>!b.disabled && b.getClientRects().length) : [];
-    menuHud.hidden=!buttons.length;
-    if(app.classList.contains('cursor-navigation') !== (buttons.length>0)) {
-      app.classList.toggle('cursor-navigation',buttons.length>0);
+    const quietScreen=['title-screen','select-screen'].includes(state.screen) && root!==modal && root!==offline;
+    const showHud=buttons.length>0 && !quietScreen;
+    menuHud.hidden=!showHud;
+    if(app.classList.contains('cursor-navigation') !== showHud) {
+      app.classList.toggle('cursor-navigation',showHud);
       layoutMetrics=null;layoutAccordion();
     }
     $$('.cursor-focus').forEach(b=>b.classList.remove('cursor-focus'));
@@ -173,7 +178,7 @@
     handCursor.dataset.progress=String(result.progress);
     if(button) button.classList.add('cursor-focus');
     const label=button?.getAttribute('aria-label') || button?.textContent.trim();
-    menuHud.textContent=!camera.cursorTracked?'Mostre o código da mão direita (ID 1).':button?`${label} • mantenha a mão aqui por ${Math.max(0,3-result.progress*3).toFixed(1)} s`:'Mova o código direito para apontar. Pare sobre um botão por 3 segundos.';
+    menuHud.textContent=!camera.cursorTracked?'Mostre o código da mão direita (ID 1).':button?`${label} • mantenha a mão aqui por ${Math.max(0,2-result.progress*2).toFixed(1)} s`:'Mova o código direito para apontar. Pare sobre um botão por 2 segundos.';
     if(result.click) button.click();
   }
   // Touch/click cancels a pending dwell but never bypasses the post-click movement lock.
@@ -187,12 +192,13 @@
     setControlMode(mode);
     if(mode==='camera') {
       $('#choose-camera').disabled=true;
-      $('#mode-message').textContent='Permita a câmera. O código direito controla a mão na tela; pare sobre um botão por 3 segundos. Toque e clique continuam disponíveis.';
+      $('#mode-message').textContent='Permita a câmera. O código direito controla a mão na tela; pare sobre um botão por 2 segundos. Toque e clique continuam disponíveis.';
       try { if(!await camera.start() || controlMode!=='camera') return; }
       catch(error) { $('#mode-message').textContent=error.message; return; }
       finally { $('#choose-camera').disabled=false; }
     }
-    showScreen('title-screen');
+    state.studioFinished=false;
+    showStudioSplash();
   }
 
   async function openCameraSetup() {
@@ -364,17 +370,19 @@
 
   async function preloadGame() {
     const imageAssets = [
-      "assets/cap-systems-logo.png?v=0.5.1",
-      "assets/sertao-magico.png?v=0.5.1",
-      "assets/cabra-celular.png?v=0.5.1",
-      "assets/aprendendo-forrozear.png?v=0.5.1",
+      "assets/cap-systems-logo.png?v=0.6.0",
+      "assets/sertao-magico.png?v=0.6.0",
+      "assets/cabra-celular.png?v=0.6.0",
+      "assets/aprendendo-forrozear.png?v=0.6.0",
+      "assets/title-background.png?v=0.6.0",
+      ...SONGS.map(song=>song.cover),
       ...GESTURES.map((gesture) => gesture.frame)
     ];
     const audioAssets = [
       ...SONGS.map((song) => song.src),
-      "sons/derrota.m4a?v=0.5.1",
-      "sons/tile_screen.m4a?v=0.5.1",
-      "sons/vitoria.m4a?v=0.5.1"
+      "sons/derrota.m4a?v=0.6.0",
+      "sons/tile_screen.m4a?v=0.6.0",
+      "sons/vitoria.m4a?v=0.6.0"
     ];
     const total = imageAssets.length + audioAssets.length;
     let completed = 0;
@@ -394,7 +402,7 @@
   function showStudioSplash() {
     showScreen("studio-screen");
     clearTimeout(state.studioTimer);
-    state.studioTimer = setTimeout(enterTitleScreen, 3000);
+    state.studioTimer = setTimeout(enterTitleScreen, 1800);
   }
 
   function enterTitleScreen() {
@@ -426,10 +434,11 @@
     const song = selectedSong();
     music.src = song.src;
     music.load();
-    $("#track-number").textContent = `FAIXA ${String(state.selectedSong + 1).padStart(2, "0")}`;
     $("#song-title").textContent = song.title;
     $("#song-description").textContent = song.description;
-    $("#record-label").textContent = song.label;
+    $("#album-cover").src = song.cover;
+    $("#album-cover").alt = `Capa de ${song.title}`;
+    $("#select-screen").style.setProperty("--album-cover", `url("${song.cover}")`);
     $("#difficulty-label").textContent = song.difficulty;
     $("#pepper-meter").setAttribute("aria-label", `Dificuldade: ${song.difficulty.toLowerCase()}, ${song.peppers} de cinco`);
     $$("#pepper-meter b").forEach((pepper, pepperIndex) => pepper.classList.toggle("off", pepperIndex >= song.peppers));
@@ -468,20 +477,25 @@
     const random = seededRandom(Date.now());
     let previous = -1;
     // Preserve original musical beats, with room to complete each gesture.
-    let interval = 2;
+    let interval = 1.7;
     let spacedBeats;
     do {
       let lastTime = -Infinity;
       spacedBeats = [];
       for (const time of beats) {
-        const gap = spacedBeats.length > 0 && spacedBeats.length % 5 === 0 ? interval + 1 : interval;
+        const gap = spacedBeats.length > 0 && spacedBeats.length % 5 === 0 ? interval + .8 : interval;
         if (time >= 3 && time - lastTime >= gap) { spacedBeats.push(time); lastTime = time; }
       }
       interval += .01;
-    } while (spacedBeats.length > Math.floor(beats.length * .37));
+    } while (spacedBeats.length > Math.floor(beats.length * .45));
+    let bag=[];
     return spacedBeats.map((time, index) => {
-      let gestureIndex = Math.floor(random() * GESTURES.length);
-      if (gestureIndex === previous) gestureIndex = (gestureIndex + 1 + Math.floor(random() * (GESTURES.length - 1))) % GESTURES.length;
+      if(!bag.length) {
+        bag=GESTURES.map((_,i)=>i);
+        for(let i=bag.length-1;i>0;i--) { const j=Math.floor(random()*(i+1)); [bag[i],bag[j]]=[bag[j],bag[i]]; }
+        if(bag[0]===previous) [bag[0],bag[1]]=[bag[1],bag[0]];
+      }
+      const gestureIndex=bag.shift();
       previous = gestureIndex;
       return { id: index, time, gesture: GESTURES[gestureIndex], judged: false, hit: false, element: null, poseSince: null, startPositions: null };
     });

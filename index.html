@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#061526" />
     <meta name="description" content="Sanfona Hero — um jogo rítmico inspirado no sertão brasileiro." />
     <title>Sanfona Hero</title>
-    <link rel="stylesheet" href="styles.css?v=0.5.1" />
+    <link rel="stylesheet" href="styles.css?v=0.6.0" />
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="apple-touch-icon" href="./app-icon.png" />
     <link rel="stylesheet" href="./offline.css" />
@@ -24,7 +24,7 @@
           <p>Use os dedos na tela ou o mouse.</p>
           <button id="choose-camera" class="button button-secondary" type="button">Sanfona real + câmera</button>
           <p>Use os dois códigos impressos. A calibração vem após Sanfonar.</p>
-          <p id="mode-message" role="status"></p>
+          <button id="offline-open" class="text-button" type="button">Offline e instalação</button><p id="mode-message" role="status"></p>
         </div>
       </section>
       <section id="loading-screen" class="screen active loading-screen" aria-label="Carregando o jogo">
@@ -43,21 +43,13 @@
 
       <section id="studio-screen" class="screen studio-screen" aria-label="CAP Systems">
         <button id="studio-skip" class="studio-skip" type="button" aria-label="Continuar para a tela de título">
-          <img src="assets/cap-systems-logo.png?v=0.5.1" alt="CAP Systems" />
+          <img src="assets/cap-systems-logo.png?v=0.6.0" alt="CAP Systems" />
           <span>Toque para continuar</span>
         </button>
       </section>
 
       <section id="title-screen" class="screen title-screen" aria-label="Tela de título">
         <div class="stars" aria-hidden="true"></div>
-        <div class="brand-wrap">
-          <div class="hat-mark" aria-hidden="true"><span>✦</span></div>
-          <h1 class="logo"><span>Sanfona</span><strong>Hero</strong></h1>
-          <p class="subtitle">O ritmo mais arretado do sertão</p>
-          <p class="title-credit">Criado por Christopher de Assis Pereira (CAP Systems)</p>
-        </div>
-
-        <button id="offline-open" type="button">Offline e instalação</button>
         <div class="title-actions">
           <button id="play-button" class="button button-primary" type="button">
             <span class="button-icon">♫</span> Sanfonar!
@@ -84,10 +76,7 @@
             <button id="previous-song" class="song-nav" type="button" aria-label="Música anterior">‹</button>
             <button id="song-card" class="song-card" type="button" aria-label="Ouvir prévia de Sanfona de Cristóvão">
               <div class="record-wrap">
-                <div class="record">
-                  <div class="record-rings"></div>
-                  <div id="record-label" class="record-label">SH</div>
-                </div>
+                <img id="album-cover" src="assets/sertao-magico.png?v=0.6.0" alt="Capa de Sanfona de Cristóvão" />
                 <div class="play-preview"><span id="preview-icon">▶</span></div>
               </div>
               <div class="equalizer" id="equalizer" aria-hidden="true">
@@ -97,10 +86,9 @@
             </button>
             <button id="next-song" class="song-nav" type="button" aria-label="Próxima música">›</button>
           </div>
-          <div id="song-dots" class="song-dots" aria-label="Faixa 1 de 3"><i class="active"></i><i></i><i></i></div>
+          <div id="song-dots" class="song-dots" aria-label="Faixa 1 de 4"><i class="active"></i><i></i><i></i><i></i></div>
 
           <article class="song-info">
-            <span id="track-number" class="track-number">FAIXA 01</span>
             <h3 id="song-title">Sanfona de Cristóvão</h3>
             <p id="song-description">Forró encantado • CAP Systems</p>
             <div class="difficulty">
@@ -113,11 +101,11 @@
           </article>
         </div>
 
-        <div class="control-picker" aria-label="Modo de controle">
+        <div hidden class="control-picker" aria-label="Modo de controle">
           <button id="touch-mode" type="button" aria-pressed="true">Toque</button>
           <button id="camera-mode" type="button" aria-pressed="false">Câmera + sanfona real</button>
         </div>
-        <p id="control-status" class="control-status">Controle com os dedos na tela</p>
+        <p hidden id="control-status" class="control-status">Controle com os dedos na tela</p>
         <button id="start-button" class="button button-primary bora-button" type="button">Bora! <span>›</span></button>
       </section>
 
@@ -201,15 +189,15 @@
         </header>
         <div id="tutorial-pages" class="tutorial-pages">
           <article class="tutorial-page active">
-            <div class="tutorial-visual frame-preview"><img src="assets/frames/sanfona_totalmente_aberta.png?v=0.5.1" alt="Sanfona totalmente aberta" /></div>
+            <div class="tutorial-visual frame-preview"><img src="assets/frames/sanfona_totalmente_aberta.png?v=0.6.0" alt="Sanfona totalmente aberta" /></div>
             <span class="eyebrow">AS DUAS MÃOS</span>
             <h3>Segure firme!</h3>
             <p>Encoste um dedo em cada lado da sanfona. Mantenha os dois dedos na tela e mova as mãos juntas.</p>
           </article>
           <article class="tutorial-page">
             <div class="gesture-grid">
-              <div><img src="assets/frames/sanfona_totalmente_aberta.png?v=0.5.1" alt="" /><b>ABERTA</b></div>
-              <div><img src="assets/frames/sanfona_totalmente_fechada.png?v=0.5.1" alt="" /><b>FECHADA</b></div>
+              <div><img src="assets/frames/sanfona_totalmente_aberta.png?v=0.6.0" alt="" /><b>ABERTA</b></div>
+              <div><img src="assets/frames/sanfona_totalmente_fechada.png?v=0.6.0" alt="" /><b>FECHADA</b></div>
             </div>
             <span class="eyebrow">MOVIMENTOS LATERAIS</span>
             <h3>Abra e feche!</h3>
@@ -217,15 +205,15 @@
           </article>
           <article class="tutorial-page">
             <div class="gesture-grid">
-              <div><img src="assets/frames/sanfona_tudo_cima.png?v=0.5.1" alt="" /><b>PRA CIMA</b></div>
-              <div><img src="assets/frames/sanfona_tudo_baixo.png?v=0.5.1" alt="" /><b>PRA BAIXO</b></div>
+              <div><img src="assets/frames/sanfona_tudo_cima.png?v=0.6.0" alt="" /><b>PRA CIMA</b></div>
+              <div><img src="assets/frames/sanfona_tudo_baixo.png?v=0.6.0" alt="" /><b>PRA BAIXO</b></div>
             </div>
             <span class="eyebrow">MOVIMENTOS VERTICAIS</span>
             <h3>Suba e desça!</h3>
             <p>O meio do fole fica preso. Dois lados para cima fazem uma barriga; dois para baixo fazem um morro.</p>
           </article>
           <article class="tutorial-page">
-            <div class="tutorial-visual timing-demo"><div class="falling-demo"><img src="assets/frames/sanfona_totalmente_aberta.png?v=0.5.1" alt="" /></div><div class="demo-line">AGORA!</div></div>
+            <div class="tutorial-visual timing-demo"><div class="falling-demo"><img src="assets/frames/sanfona_totalmente_aberta.png?v=0.6.0" alt="" /></div><div class="demo-line">AGORA!</div></div>
             <span class="eyebrow">NO TEMPO DA MÚSICA</span>
             <h3>Acerte a batida!</h3>
             <p>Chegue pela direção das setas e firme a pose com os dois dedos quando ela tocar a linha dourada. Dez erros seguidos encerram o show.</p>
@@ -248,26 +236,26 @@
         </div>
       </div>
 
-      <audio id="music" preload="auto" src="musicas/safona_cristovao.m4a?v=0.5.1"></audio>
-      <audio id="sfx-defeat" preload="auto" src="sons/derrota.m4a?v=0.5.1"></audio>
-      <audio id="sfx-title" preload="auto" src="sons/tile_screen.m4a?v=0.5.1"></audio>
-      <audio id="sfx-victory" preload="auto" src="sons/vitoria.m4a?v=0.5.1"></audio>
+      <audio id="music" preload="auto" src="musicas/safona_cristovao.m4a?v=0.6.0"></audio>
+      <audio id="sfx-defeat" preload="auto" src="sons/derrota.m4a?v=0.6.0"></audio>
+      <audio id="sfx-title" preload="auto" src="sons/tile_screen.m4a?v=0.6.0"></audio>
+      <audio id="sfx-victory" preload="auto" src="sons/vitoria.m4a?v=0.6.0"></audio>
     </main>
-    <script src="fit-screen.js?v=0.5.1"></script>
-    <script src="vendor/three.min.js?v=0.5.1"></script>
-    <script src="accordion-3d.js?v=0.5.1"></script>
-    <script src="vendor/aruco/cv.js?v=0.5.1"></script>
-    <script src="vendor/aruco/aruco.js?v=0.5.1"></script>
-    <script src="vendor/aruco/dictionary.js?v=0.5.1"></script>
-    <script src="camera-control.js?v=0.5.1"></script>
-    <script src="menu-cursor.js?v=0.5.1"></script>
-    <script src="game.js?v=0.5.1"></script>
+    <script src="fit-screen.js?v=0.6.0"></script>
+    <script src="vendor/three.min.js?v=0.6.0"></script>
+    <script src="accordion-3d.js?v=0.6.0"></script>
+    <script src="vendor/aruco/cv.js?v=0.6.0"></script>
+    <script src="vendor/aruco/aruco.js?v=0.6.0"></script>
+    <script src="vendor/aruco/dictionary.js?v=0.6.0"></script>
+    <script src="camera-control.js?v=0.6.0"></script>
+    <script src="menu-cursor.js?v=0.6.0"></script>
+    <script src="game.js?v=0.6.0"></script>
   <section id="offline-panel" aria-label="Instalação e modo offline" hidden>
       <div class="offline-card">
         <h2>Leve o forró com você</h2>
         <p id="offline-status" role="status">Preparando os arquivos offline…</p>
         <p id="offline-help">No iPhone: abra este link no Safari, toque em Compartilhar e em Adicionar à Tela de Início. Abra pelo ícone com internet e espere a confirmação antes de desconectar.</p>
-        <small>O download inicial tem cerca de 15 MB. A câmera é processada no aparelho e continua precisando da sua permissão. Se o navegador apagar os dados do site, será necessário baixar os arquivos novamente.</small>
+        <small>O download inicial tem cerca de 43 MB. A câmera é processada no aparelho e continua precisando da sua permissão. Se o navegador apagar os dados do site, será necessário baixar os arquivos novamente.</small>
         <p id="offline-record">Pontuação local, sem conexão com o ranking do catálogo.</p>
         <button id="offline-install" type="button">Instalar no aparelho</button>
         <button id="offline-update" type="button" hidden>Atualizar jogo</button>
