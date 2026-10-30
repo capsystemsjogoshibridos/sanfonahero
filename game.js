@@ -28,17 +28,17 @@
   const NEVE_BEATS = [4.18, 5.0, 6.86, 7.56, 8.56, 9.52, 10.2, 10.86, 11.54, 12.38, 13.22, 13.88, 14.38, 15.04, 15.72, 17.54, 18.06, 18.72, 19.38, 20.22, 20.9, 21.56, 22.08, 22.9, 23.74, 24.4, 25.08, 25.74, 26.24, 27.08, 27.58, 28.08, 29.1, 29.76, 30.26, 30.76, 31.76, 32.6, 33.1, 33.78, 34.46, 35.12, 35.62, 36.12, 37.14, 37.8, 38.8, 39.64, 40.14, 40.82, 41.48, 42.16, 43.16, 43.66, 44.16, 44.98, 45.82, 46.32, 47.16, 48.16, 49.0, 49.84, 50.52, 51.18, 52.02, 53.18, 53.68, 54.7, 55.68, 56.52, 57.2, 57.86, 58.54, 59.2, 59.7, 60.54, 61.04, 61.54, 62.54, 63.2, 64.04, 64.54, 65.04, 65.88, 66.88, 67.38, 68.56, 69.56, 70.38, 71.22, 71.9, 72.56, 73.24, 73.9, 74.4, 75.24, 75.92, 76.56, 77.42, 78.4, 79.24, 80.08, 80.58, 81.08, 81.58, 82.24, 83.24, 83.74, 84.58, 85.08, 85.76, 86.92, 87.58, 88.08, 88.58, 89.08, 89.9, 90.4, 91.26, 92.26, 93.26, 94.26, 95.26, 96.26, 97.08, 97.92, 98.42, 99.26, 99.76, 100.26, 101.08, 101.92, 102.42, 103.26, 103.76, 104.26, 105.08, 105.58, 106.42, 106.92, 107.74, 108.24, 109.26, 109.9, 110.42, 111.24, 111.9, 112.56, 113.24, 113.9, 114.4, 116.24, 116.74, 117.24, 117.9, 118.4, 119.38, 119.9, 120.4, 121.06, 122.38, 123.06, 123.72, 124.22, 125.04, 125.88, 126.54, 127.56, 128.54, 129.04, 129.54, 130.36, 131.2, 131.88, 132.54, 133.38, 134.36, 135.2, 135.7, 136.2, 136.88, 138.04, 138.7, 139.2, 139.7, 140.2, 141.2, 141.86, 142.54, 143.2, 143.7, 144.52, 145.2, 145.86, 146.36, 147.54, 148.2, 148.7, 149.2, 149.86, 150.36, 150.86, 151.7, 152.52, 153.02, 153.86, 154.36, 154.86, 155.68, 156.52, 157.2, 157.86, 159.2, 159.7, 160.2, 161.04, 162.2, 162.86, 163.7, 164.7, 165.7, 166.2, 167.04, 168.04, 168.7, 169.7];
 
   const SONGS = [
-    { id: "cristovao", title: "Sanfona de Cristóvão", description: "Christopher de Assis Pereira", cover: "assets/sertao-magico.png?v=0.6.1", src: "musicas/safona_cristovao.m4a?v=0.6.1", label: "SH", theme: "sertao", difficulty: "ARRETADA", peppers: 3, beats: CRISTOVAO_BEATS, fallTime: 2.3, scoreMultiplier: 1 },
-    { id: "cabra", title: "O Cabra do Celular", description: "Christopher de Assis Pereira", cover: "assets/cabra-celular.png?v=0.6.1", src: "musicas/cabra_celular.m4a?v=0.6.1", label: "CC", theme: "celular", difficulty: "ACOCHADA", peppers: 4, beats: CABRA_BEATS, fallTime: 2.2, scoreMultiplier: 1.15 },
-    { id: "forrozear", title: "Aprendendo a Forrozear", description: "Christopher de Assis Pereira", cover: "assets/aprendendo-forrozear.png?v=0.6.1", src: "musicas/aprendendo_forrozear.m4a?v=0.6.1", label: "AF", theme: "baile", difficulty: "INVOCADA", peppers: 5, beats: FORROZEAR_BEATS, fallTime: 2.1, scoreMultiplier: 1.3 },
-    { id: "neve", title: "Forró Paralelo na Neve", description: "Jorge do Rojão feat. Christopher de Assis Pereira", cover: "assets/forro-neve.png?v=0.6.1", src: "musicas/forro_neve.m4a?v=0.6.1", label: "FN", theme: "neve", difficulty: "ARRETADA", peppers: 3, beats: NEVE_BEATS, fallTime: 2.25, scoreMultiplier: 1 }
+    { id: "cristovao", title: "Sanfona de Cristóvão", description: "Christopher de Assis Pereira", cover: "assets/sertao-magico.png?v=0.6.2", src: "musicas/safona_cristovao.m4a?v=0.6.2", label: "SH", theme: "sertao", difficulty: "ARRETADA", peppers: 3, beats: CRISTOVAO_BEATS, fallTime: 2.3, scoreMultiplier: 1 },
+    { id: "cabra", title: "O Cabra do Celular", description: "Christopher de Assis Pereira", cover: "assets/cabra-celular.png?v=0.6.2", src: "musicas/cabra_celular.m4a?v=0.6.2", label: "CC", theme: "celular", difficulty: "ACOCHADA", peppers: 4, beats: CABRA_BEATS, fallTime: 2.2, scoreMultiplier: 1.15 },
+    { id: "forrozear", title: "Aprendendo a Forrozear", description: "Christopher de Assis Pereira", cover: "assets/aprendendo-forrozear.png?v=0.6.2", src: "musicas/aprendendo_forrozear.m4a?v=0.6.2", label: "AF", theme: "baile", difficulty: "INVOCADA", peppers: 5, beats: FORROZEAR_BEATS, fallTime: 2.1, scoreMultiplier: 1.3 },
+    { id: "neve", title: "Forró Paralelo na Neve", description: "Jorge do Rojão feat. Christopher de Assis Pereira", cover: "assets/forro-neve.png?v=0.6.2", src: "musicas/forro_neve.m4a?v=0.6.2", label: "FN", theme: "neve", difficulty: "ARRETADA", peppers: 3, beats: NEVE_BEATS, fallTime: 2.25, scoreMultiplier: 1 }
   ];
 
   const GESTURES = [
-    { id: "open", name: "Toda aberta", symbol: "↔", frame: "assets/frames/sanfona_totalmente_aberta.png?v=0.6.1", left: [.14, .72], right: [.86, .72], xTolerance: .11, yTolerance: .09 },
-    { id: "closed", name: "Toda fechada", symbol: "→←", frame: "assets/frames/sanfona_totalmente_fechada.png?v=0.6.1", left: [.38, .72], right: [.62, .72], xTolerance: .095, yTolerance: .09 },
-    { id: "up", name: "Tudo pra cima", symbol: "↑ ↑", frame: "assets/frames/sanfona_tudo_cima.png?v=0.6.1", left: [.32, .57], right: [.68, .57], xTolerance: .115, yTolerance: .085 },
-    { id: "down", name: "Tudo pra baixo", symbol: "↓ ↓", frame: "assets/frames/sanfona_tudo_baixo.png?v=0.6.1", left: [.32, .88], right: [.68, .88], xTolerance: .115, yTolerance: .085 },
+    { id: "open", name: "Toda aberta", symbol: "↔", frame: "assets/frames/sanfona_totalmente_aberta.png?v=0.6.2", left: [.14, .72], right: [.86, .72], xTolerance: .11, yTolerance: .09 },
+    { id: "closed", name: "Toda fechada", symbol: "→←", frame: "assets/frames/sanfona_totalmente_fechada.png?v=0.6.2", left: [.38, .72], right: [.62, .72], xTolerance: .095, yTolerance: .09 },
+    { id: "up", name: "Tudo pra cima", symbol: "↑ ↑", frame: "assets/frames/sanfona_tudo_cima.png?v=0.6.2", left: [.32, .57], right: [.68, .57], xTolerance: .115, yTolerance: .085 },
+    { id: "down", name: "Tudo pra baixo", symbol: "↓ ↓", frame: "assets/frames/sanfona_tudo_baixo.png?v=0.6.2", left: [.32, .88], right: [.68, .88], xTolerance: .115, yTolerance: .085 },
   ];
 
   const FEEDBACK_EXPRESSIONS = {
@@ -370,19 +370,19 @@
 
   async function preloadGame() {
     const imageAssets = [
-      "assets/cap-systems-logo.png?v=0.6.1",
-      "assets/sertao-magico.png?v=0.6.1",
-      "assets/cabra-celular.png?v=0.6.1",
-      "assets/aprendendo-forrozear.png?v=0.6.1",
-      "assets/title-background.png?v=0.6.1",
+      "assets/cap-systems-logo.png?v=0.6.2",
+      "assets/sertao-magico.png?v=0.6.2",
+      "assets/cabra-celular.png?v=0.6.2",
+      "assets/aprendendo-forrozear.png?v=0.6.2",
+      "assets/title-background.png?v=0.6.2",
       ...SONGS.map(song=>song.cover),
       ...GESTURES.map((gesture) => gesture.frame)
     ];
     const audioAssets = [
       ...SONGS.map((song) => song.src),
-      "sons/derrota.m4a?v=0.6.1",
-      "sons/tile_screen.m4a?v=0.6.1",
-      "sons/vitoria.m4a?v=0.6.1"
+      "sons/derrota.m4a?v=0.6.2",
+      "sons/tile_screen.m4a?v=0.6.2",
+      "sons/vitoria.m4a?v=0.6.2"
     ];
     const total = imageAssets.length + audioAssets.length;
     let completed = 0;

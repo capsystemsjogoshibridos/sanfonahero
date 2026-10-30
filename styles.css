@@ -105,7 +105,7 @@ button { font: inherit; }
   padding: max(6vh, 40px) 28px max(env(safe-area-inset-bottom), 22px);
   background:
     linear-gradient(180deg, rgba(2, 12, 25, .18) 20%, rgba(3, 12, 20, .25) 47%, rgba(3, 10, 15, .92) 95%),
-    url("assets/sertao-magico.png?v=0.6.1") center bottom / cover no-repeat;
+    url("assets/sertao-magico.png?v=0.6.2") center bottom / cover no-repeat;
 }
 
 .title-screen::before {
@@ -167,14 +167,14 @@ button { font: inherit; }
 .tiny-hat { color: var(--gold); font-size: 27px; }
 
 .select-screen {
-  --selection-image: url("assets/sertao-magico.png?v=0.6.1");
+  --selection-image: url("assets/sertao-magico.png?v=0.6.2");
   flex-direction: column;
   background:
     linear-gradient(180deg, rgba(4,16,29,.55), #071522 82%),
     var(--selection-image) center / cover;
 }
-.select-screen[data-theme="celular"] { --selection-image: url("assets/cabra-celular.png?v=0.6.1"); }
-.select-screen[data-theme="baile"] { --selection-image: url("assets/aprendendo-forrozear.png?v=0.6.1"); }
+.select-screen[data-theme="celular"] { --selection-image: url("assets/cabra-celular.png?v=0.6.2"); }
+.select-screen[data-theme="baile"] { --selection-image: url("assets/aprendendo-forrozear.png?v=0.6.2"); }
 .selection-stage { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 6px 18px; }
 .record-carousel { display: grid; grid-template-columns: 48px minmax(0, 1fr) 48px; align-items: center; gap: 5px; width: min(100%, 390px); margin: 0 auto; }
 .song-nav { width: 44px; height: 64px; border: 1px solid rgba(255,221,134,.38); border-radius: 18px; background: rgba(4,15,23,.72); color: var(--gold-light); font-size: 38px; line-height: 1; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,.35); }
@@ -201,9 +201,9 @@ button { font: inherit; }
 .difficulty strong { color: var(--orange); }.pepper-meter { display: flex; gap: 4px; }.pepper-meter b { color: var(--orange); }.pepper-meter .off { color: #33404a; }
 .bora-button { margin: 12px 30px max(env(safe-area-inset-bottom), 26px); display: flex; justify-content: center; align-items: center; gap: 12px; }.bora-button span { font-size: 30px; }
 
-.game-screen { --scene-image: url("assets/sertao-magico.png?v=0.6.1"); background: #071522; isolation: isolate; }
-.game-screen[data-theme="celular"] { --scene-image: url("assets/cabra-celular.png?v=0.6.1"); }
-.game-screen[data-theme="baile"] { --scene-image: url("assets/aprendendo-forrozear.png?v=0.6.1"); }
+.game-screen { --scene-image: url("assets/sertao-magico.png?v=0.6.2"); background: #071522; isolation: isolate; }
+.game-screen[data-theme="celular"] { --scene-image: url("assets/cabra-celular.png?v=0.6.2"); }
+.game-screen[data-theme="baile"] { --scene-image: url("assets/aprendendo-forrozear.png?v=0.6.2"); }
 .game-bg { position: absolute; z-index: 0; inset: -3%; background: linear-gradient(180deg, rgba(1,9,18,.34), rgba(1,8,12,.06) 65%, rgba(2,6,8,.64)), var(--scene-image) center / cover; transform: scale(1.05); will-change: transform, filter; animation: backdrop-breathe 14s ease-in-out infinite alternate; }
 .game-bg::before { content: ""; position: absolute; inset: 0; background: repeating-conic-gradient(from 15deg at 50% 62%, rgba(255,194,53,.19) 0 7deg, transparent 8deg 19deg, rgba(25,183,170,.12) 20deg 27deg, transparent 28deg 42deg); mix-blend-mode: screen; opacity: .48; -webkit-mask-image: radial-gradient(circle at 50% 62%, #000 0 10%, transparent 53%); mask-image: radial-gradient(circle at 50% 62%, #000 0 10%, transparent 53%); animation: aura-turn 24s linear infinite; }
 .game-bg::after { content: ""; position: absolute; inset: 6% -10% 0; background: linear-gradient(135deg, transparent 18%, rgba(255,130,33,.12) 18% 25%, transparent 25% 55%, rgba(28,183,171,.11) 55% 62%, transparent 62%), linear-gradient(35deg, transparent 35%, rgba(255,221,97,.1) 36% 41%, transparent 42%); clip-path: polygon(0 23%, 14% 12%, 28% 28%, 43% 7%, 58% 26%, 75% 9%, 100% 27%, 100% 100%, 0 100%); opacity: .6; animation: poly-horizon 9s ease-in-out infinite alternate; }
@@ -411,7 +411,7 @@ button { font: inherit; }
 #game-camera-view { display: none; }
 .camera-control #accordion-3d, .camera-control #pose-readout { display: none; }
 .camera-control #game-camera-view { display: block; position: absolute; inset: 0 12px 24px; overflow: hidden; border: 1px solid #527079; border-radius: 16px; background: #000; }
-#game-camera-view video { display: block; width: 100%; height: 100%; object-fit: contain; transform: scaleX(-1); }
+#game-camera-view video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; transform: scaleX(-1); }
 .mode-screen { align-items: center; justify-content: center; padding: 25px; background: radial-gradient(circle, #183e4d, #071521); }
 .mode-card { max-width: 650px; width: 100%; text-align: center; }
 .mode-card h2 { font-size: 30px; }
@@ -429,7 +429,7 @@ button { font: inherit; }
 .studio-skip { width: 100%; height: 100%; display: grid; place-content: center; justify-items: center; background: #fff; color: #16403e; }
 .studio-skip img { width: auto; max-width: 80%; height: 65%; max-height: 560px; object-fit: contain; animation: studio-arrive .8s ease-out both; }
 .studio-skip span { position: absolute; bottom: 25px; }
-.title-screen, .landscape .title-screen { background: #07111c url('assets/title-background.png?v=0.6.1') center / contain no-repeat; padding: 24px; align-items: center; justify-content: flex-end; flex-direction: column; }
+.title-screen, .landscape .title-screen { background: #07111c url('assets/title-background.png?v=0.6.2') center / contain no-repeat; padding: 24px; align-items: center; justify-content: flex-end; flex-direction: column; }
 .title-screen::before, .title-screen .stars { display: none; }
 .title-screen .title-actions, .landscape .title-actions { flex: none; width: min(100%, 340px); max-width: none; margin: 0; gap: 10px; }
 .title-actions .text-button { margin-top: 0; background: #07111ce8; border-radius: 12px; padding: 9px; }
@@ -458,7 +458,7 @@ button { font: inherit; }
 .landscape .select-screen .song-info h3 { font-size: 22px; margin: 2px 0 4px; }
 .landscape .select-screen .difficulty { margin-top: 6px; padding: 7px 12px; }
 .landscape .select-screen .bora-button { margin: 8px auto 12px; padding: 9px 18px; min-height: 48px; }
-.game-screen[data-theme='neve'] { --scene-image: url('assets/forro-neve.png?v=0.6.1'); }
+.game-screen[data-theme='neve'] { --scene-image: url('assets/forro-neve.png?v=0.6.2'); }
 /* Camera gameplay: live view and meters on the left, falling poses on the right. */
 .camera-control .game-hud { display: contents; }
 .camera-control #pause-button { position: absolute; z-index: 25; left: 12px; top: 12px; }
@@ -498,8 +498,8 @@ button { font: inherit; }
 .camera-control .note-lane, .camera-control .hit-line { left: 50%; }
 @media (prefers-reduced-motion: reduce) { .game-bg, .kaleido-a, .bellows-sun { animation: none !important; } }
 .studio-skip img { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 70%; height: 70%; max-width: 500px; max-height: none; }
-.title-screen::before { display: block; content: ''; position: absolute; inset: -20px; background: url('assets/title-background.png?v=0.6.1') center / cover; filter: blur(18px) brightness(.35); z-index: 0; }
-.title-screen::after { content: ''; position: absolute; inset: 0; background: url('assets/title-background.png?v=0.6.1') center / contain no-repeat; pointer-events: none; z-index: 1; }
+.title-screen::before { display: block; content: ''; position: absolute; inset: -20px; background: url('assets/title-background.png?v=0.6.2') center / cover; filter: blur(18px) brightness(.35); z-index: 0; }
+.title-screen::after { content: ''; position: absolute; inset: 0; background: url('assets/title-background.png?v=0.6.2') center / contain no-repeat; pointer-events: none; z-index: 1; }
 .title-screen .title-actions { position: relative; z-index: 2; }
 /* Keep moving layers compositable; avoid blending and filtered note textures. */
 .note-frame { filter: none; }
