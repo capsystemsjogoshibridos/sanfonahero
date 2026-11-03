@@ -8,7 +8,8 @@
   }));
 
   class SanfonaCamera {
-    constructor({ onFrame, onError }) {
+    constructor({ onFrame, onError, air = false }) {
+      this.air = air;
       this.onFrame = onFrame;
       this.onError = onError;
       this.video = document.querySelector('#camera-video');
@@ -27,7 +28,7 @@
     get calibrated() { return ['closed', 'open', 'up', 'down'].every(id => !!this.templates[id]); }
     restoreCalibration() {
       if (this.calibrated) return;
-      const saved = window.SanfonaCalibrationStore?.load();
+      const saved = window.SanfonaCalibrationStore?.load(this.air);
       const ids = ['closed', 'open', 'up', 'down'];
       if (!saved || saved.version !== 1 || !Number.isFinite(saved.aspect)) return;
       if (!ids.every(id => Array.isArray(saved.templates?.[id]) && saved.templates[id].length === 2 && saved.templates[id].every(p => Number.isFinite(p.x) && Number.isFinite(p.y) && p.x >= 0 && p.x <= 1 && p.y >= 0 && p.y <= 1))) return;
@@ -49,11 +50,11 @@
       if (policy?.allowsFeature && !policy.allowsFeature('camera')) {
         throw new Error('O catálogo bloqueou a câmera neste jogo. A plataforma precisa liberar camera no iframe e na Permissions-Policy.');
       }
-      if (!window.AR?.Detector || !window.AR.DICTIONARIES?.SANFONA_4X4_50) {
+      if (!this.air && (!window.AR?.Detector || !window.AR.DICTIONARIES?.SANFONA_4X4_50)) {
         throw new Error('O detector não foi carregado. Recarregue a página do jogo para atualizar os arquivos.');
       }
       // Validate local detection before requesting access to the camera.
-      this.detector = new window.AR.Detector({ dictionaryName: 'SANFONA_4X4_50', maxHammingDistance: 1 });
+      this.detector = this.air ? new window.AirDetector() : new window.AR.Detector({ dictionaryName: 'SANFONA_4X4_50', maxHammingDistance: 1 });
       let stream;
       try {
         stream = await navigator.mediaDevices.getUserMedia({ audio: false, video: {
@@ -67,14 +68,14 @@
         const aspect = this.video.videoWidth / this.video.videoHeight;
         if (this.calibrated && this.calibrationAspect && Math.abs(aspect / this.calibrationAspect - 1) > .1) {
           this.templates = {};
-          window.SanfonaCalibrationStore?.clear();
+          window.SanfonaCalibrationStore?.clear(this.air);
         }
         this.calibrationAspect = aspect;
         // Some hosts permit the camera but block workers or their importScripts.
         // Normal local scripts provide a fallback without changing permissions.
         this.detectorMode = 'página';
-        try {
-          const worker = new Worker('camera-worker.js?v=0.6.2');
+        if (!this.air) try {
+          const worker = new Worker('camera-worker.js?v=0.7.0');
           this.worker = worker;
           this.detectorMode = 'segundo plano';
           worker.onmessage = event => {
@@ -136,7 +137,7 @@
       const interval = Math.max(50, Math.min(100, (this.processingAverage || 0) * 2));
       if (!document.hidden && !this.busy && this.video.readyState >= 2 && this.video.currentTime !== this.lastVideoTime && now - (this.sentAt || 0) >= interval) {
         this.lastVideoTime = this.video.currentTime;
-        const scale = Math.min(1, 640 / this.video.videoWidth);
+        const scale = Math.min(1, (this.air ? 360 : 640) / this.video.videoWidth);
         const width = Math.round(this.video.videoWidth * scale);
         const height = Math.round(this.video.videoHeight * scale);
         if (this.canvas.width !== width || this.canvas.height !== height) {
@@ -181,7 +182,7 @@
       const pair = [0, 1].map(id => markers.filter(m => m.id === id));
       // Duplicated IDs and tiny/out-of-frame squares are never trusted.
       const validMarker = group => group.length === 1 && group[0].corners.every((p, i, corners) =>
-        p.x > 3 && p.y > 3 && p.x < this.canvas.width - 3 && p.y < this.canvas.height - 3 && distance(p, corners[(i + 1) % 4]) >= 18);
+        p.x > 3 && p.y > 3 && p.x < this.canvas.width - 3 && p.y < this.canvas.height - 3 && distance(p, corners[(i + 1) % 4]) >= (this.air ? 7 : 18));
       const valid = pair.every(validMarker);
       // Menus need only ID 1; gameplay and calibration still require both markers.
       if(validMarker(pair[1]) && performance.now()-capturedAt<250) {
@@ -217,6 +218,13 @@
       const ctx = canvas.getContext('2d');
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (const marker of markers) {
+        if (this.air) {
+          const [tl,,br] = marker.corners;
+          ctx.beginPath();
+          ctx.arc((tl.x+br.x)/2,(tl.y+br.y)/2,Math.max(4,(br.x-tl.x)/2+2),0,Math.PI*2);
+          ctx.strokeStyle = marker.id===0 ? '#00dfff' : '#e5ff00';
+          ctx.lineWidth=3; ctx.stroke(); continue;
+        }
         ctx.strokeStyle = marker.id === 0 ? '#00ffcc' : '#ffd75f';
         ctx.lineWidth = 3;
         ctx.beginPath();
@@ -243,7 +251,7 @@
       }
       this.templates[id] = mean;
       this.poseCacheValid = false;
-      if (this.calibrated) window.SanfonaCalibrationStore?.save({ version: 1, aspect: this.calibrationAspect, templates: this.templates });
+      if (this.calibrated) window.SanfonaCalibrationStore?.save({ version: 1, aspect: this.calibrationAspect, templates: this.templates }, this.air);
     }
     score(id) {
       if (!this.tracked || !this.templates[id]) return Infinity;

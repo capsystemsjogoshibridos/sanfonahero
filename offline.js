@@ -1,10 +1,10 @@
 (() => {
   'use strict';
-  const calibrationKey = 'sanfona-calibration-v1';
+  const calibrationKey = air => air ? 'airccordion-calibration-v1' : 'sanfona-calibration-v1';
   window.SanfonaCalibrationStore = {
-    load() { try { return JSON.parse(localStorage.getItem(calibrationKey)); } catch { return null; } },
-    save(value) { try { localStorage.setItem(calibrationKey, JSON.stringify(value)); } catch {} },
-    clear() { try { localStorage.removeItem(calibrationKey); } catch {} }
+    load(air) { try { return JSON.parse(localStorage.getItem(calibrationKey(air))); } catch { return null; } },
+    save(value,air) { try { localStorage.setItem(calibrationKey(air), JSON.stringify(value)); } catch {} },
+    clear(air) { try { localStorage.removeItem(calibrationKey(air)); } catch {} }
   };
   const status = document.querySelector('#offline-status');
   const panel = document.querySelector('#offline-panel');
