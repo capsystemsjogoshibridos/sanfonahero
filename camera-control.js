@@ -23,8 +23,9 @@
       this.latency = 80;
     }
     get active() { return !!this.stream?.getVideoTracks().some(track => track.readyState === 'live'); }
-    get tracked() { return this.active && !!this.points && performance.now() - this.lastSeen < 250; }
-    get cursorTracked() { return this.active && !!this.cursorPoint && performance.now() - this.cursorSeen < 250; }
+    get freshnessMs() { return this.air ? 500 : 250; }
+    get tracked() { return this.active && !!this.points && performance.now() - this.lastSeen < this.freshnessMs; }
+    get cursorTracked() { return this.active && !!this.cursorPoint && performance.now() - this.cursorSeen < this.freshnessMs; }
     get calibrated() { return ['closed', 'open', 'up', 'down'].every(id => !!this.templates[id]); }
     restoreCalibration() {
       if (this.calibrated) return;
@@ -54,7 +55,7 @@
         throw new Error('O detector não foi carregado. Recarregue a página do jogo para atualizar os arquivos.');
       }
       // Validate local detection before requesting access to the camera.
-      this.detector = this.air ? new window.AirDetector() : new window.AR.Detector({ dictionaryName: 'SANFONA_4X4_50', maxHammingDistance: 1 });
+      this.detector = this.air ? null : new window.AR.Detector({ dictionaryName: 'SANFONA_4X4_50', maxHammingDistance: 1 });
       let stream;
       try {
         stream = await navigator.mediaDevices.getUserMedia({ audio: false, video: {
@@ -74,8 +75,8 @@
         // Some hosts permit the camera but block workers or their importScripts.
         // Normal local scripts provide a fallback without changing permissions.
         this.detectorMode = 'página';
-        if (!this.air) try {
-          const worker = new Worker('camera-worker.js?v=0.7.0');
+        try {
+          const worker = new Worker(this.air ? 'pose-worker.js?v=0.8.0' : 'camera-worker.js?v=0.8.0');
           this.worker = worker;
           this.detectorMode = 'segundo plano';
           worker.onmessage = event => {
@@ -152,8 +153,9 @@
           catch { this.usePageDetector(); }
         } else {
           try {
+            if (this.air && !this.detector) this.detector=new window.AirDetector();
             const markers = this.detector.detect(image).filter(marker => marker.id === 0 || marker.id === 1);
-            this.receive({ markers, capturedAt: now });
+            this.receive({ markers, joints:this.detector.joints, capturedAt: now });
           } catch (error) {
             console.warn('Falha no detector local:', error.message);
             this.fail('Não foi possível ler a imagem da câmera. Reabra a câmera e confira se todos os arquivos do jogo foram carregados.');
@@ -163,7 +165,7 @@
       }
       this.raf = requestAnimationFrame(() => this.loop());
     }
-    receive({ markers, capturedAt, error }) {
+    receive({ markers, joints, capturedAt, error }) {
       this.busy = false;
       if (error) { this.fail('Falha no reconhecimento dos marcadores. Tente abrir a câmera novamente.'); return; }
       this.processingMs = Math.round(performance.now() - capturedAt);
@@ -185,20 +187,20 @@
         p.x > 3 && p.y > 3 && p.x < this.canvas.width - 3 && p.y < this.canvas.height - 3 && distance(p, corners[(i + 1) % 4]) >= (this.air ? 7 : 18));
       const valid = pair.every(validMarker);
       // Menus need only ID 1; gameplay and calibration still require both markers.
-      if(validMarker(pair[1]) && performance.now()-capturedAt<250) {
+      if(validMarker(pair[1]) && performance.now()-capturedAt<this.freshnessMs) {
         const corners=pair[1][0].corners;
         const raw={x:corners.reduce((s,p)=>s+p.x,0)/4/this.canvas.width,y:corners.reduce((s,p)=>s+p.y,0)/4/this.canvas.height};
-        const old=this.cursorPoint && capturedAt-this.cursorSeen<250 ? this.cursorPoint : raw;
+        const old=this.cursorPoint && capturedAt-this.cursorSeen<this.freshnessMs ? this.cursorPoint : raw;
         this.cursorPoint={x:old.x+(raw.x-old.x)*.45,y:old.y+(raw.y-old.y)*.45};
         this.cursorSeen=capturedAt;
       } else { this.cursorPoint=null; }
-      this.draw(markers);
-      if (valid && performance.now() - capturedAt < 250) {
+      this.draw(markers,joints);
+      if (valid && performance.now() - capturedAt < this.freshnessMs) {
         const raw = pair.map(([marker]) => ({
           x: marker.corners.reduce((s, p) => s + p.x, 0) / 4 / this.canvas.width,
           y: marker.corners.reduce((s, p) => s + p.y, 0) / 4 / this.canvas.height
         }));
-        const fresh = capturedAt - this.lastSeen < 250;
+        const fresh = capturedAt - this.lastSeen < this.freshnessMs;
         this.points = raw.map((p, i) => fresh && this.points ? {
           x: this.points[i].x + (p.x - this.points[i].x) * .65,
           y: this.points[i].y + (p.y - this.points[i].y) * .65
@@ -209,14 +211,25 @@
       } else { this.points = null; this.history = []; }
       this.onFrame(this);
     }
-    draw(markers) {
-      if (!document.querySelector('#camera-screen').classList.contains('active')) return;
+    draw(markers,joints) {
+      if (!document.querySelector('#camera-screen').classList.contains('active') && !(this.air && document.querySelector('#game-screen').classList.contains('active'))) return;
       const canvas = this.preview;
       if (canvas.width !== this.canvas.width || canvas.height !== this.canvas.height) {
         canvas.width = this.canvas.width; canvas.height = this.canvas.height;
       }
       const ctx = canvas.getContext('2d');
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (this.air && joints) {
+        ctx.strokeStyle='#5fffd1'; ctx.fillStyle='#ffe271'; ctx.lineWidth=2;
+        for(const [a,b] of [[5,6],[5,7],[7,9],[6,8],[8,10],[5,11],[6,12],[11,12]]) {
+          if(Math.min(joints[a].score,joints[b].score)<.35) continue;
+          ctx.beginPath();ctx.moveTo(joints[a].x,joints[a].y);ctx.lineTo(joints[b].x,joints[b].y);ctx.stroke();
+        }
+        for(const point of joints.slice(5,13)) if(point.score>=.35) {
+          ctx.beginPath();ctx.arc(point.x,point.y,3,0,Math.PI*2);ctx.fill();
+        }
+        return;
+      }
       for (const marker of markers) {
         if (this.air) {
           const [tl,,br] = marker.corners;
@@ -233,8 +246,9 @@
       }
     }
     capture(id) {
-      const recent = this.history.filter(s => performance.now() - s.time < 850);
-      if (!this.tracked || recent.length < 5 || recent.at(-1).time - recent[0].time < 550) {
+      const recent = this.history.filter(s => performance.now() - s.time < (this.air ? 1400 : 850));
+      if (!this.tracked || recent.length < (this.air ? 3 : 5) || recent.at(-1).time - recent[0].time < 550) {
+        if(this.air) throw new Error('Mantenha os dois pulsos visíveis e firmes por um segundo.');
         throw new Error('Mantenha os dois marcadores visíveis e firmes por um segundo.');
       }
       const mean = average(recent.map(s => s.points));

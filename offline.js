@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const calibrationKey = air => air ? 'airccordion-calibration-v1' : 'sanfona-calibration-v1';
+  const calibrationKey = air => air ? 'airccordion-skeleton-v1' : 'sanfona-calibration-v1';
   window.SanfonaCalibrationStore = {
     load(air) { try { return JSON.parse(localStorage.getItem(calibrationKey(air))); } catch { return null; } },
     save(value,air) { try { localStorage.setItem(calibrationKey(air), JSON.stringify(value)); } catch {} },
