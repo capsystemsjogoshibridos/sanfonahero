@@ -76,7 +76,7 @@
         // Normal local scripts provide a fallback without changing permissions.
         this.detectorMode = 'página';
         try {
-          const worker = new Worker(this.air ? 'pose-worker.js?v=0.8.0' : 'camera-worker.js?v=0.8.0');
+          const worker = new Worker(this.air ? 'pose-worker.js?v=0.8.1' : 'camera-worker.js?v=0.8.1');
           this.worker = worker;
           this.detectorMode = 'segundo plano';
           worker.onmessage = event => {
@@ -212,7 +212,7 @@
       this.onFrame(this);
     }
     draw(markers,joints) {
-      if (!document.querySelector('#camera-screen').classList.contains('active') && !(this.air && document.querySelector('#game-screen').classList.contains('active'))) return;
+      if (!document.querySelector('#camera-screen').classList.contains('active')) return;
       const canvas = this.preview;
       if (canvas.width !== this.canvas.width || canvas.height !== this.canvas.height) {
         canvas.width = this.canvas.width; canvas.height = this.canvas.height;
