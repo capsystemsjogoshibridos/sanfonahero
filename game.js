@@ -28,17 +28,17 @@
   const NEVE_BEATS = [4.18, 5.0, 6.86, 7.56, 8.56, 9.52, 10.2, 10.86, 11.54, 12.38, 13.22, 13.88, 14.38, 15.04, 15.72, 17.54, 18.06, 18.72, 19.38, 20.22, 20.9, 21.56, 22.08, 22.9, 23.74, 24.4, 25.08, 25.74, 26.24, 27.08, 27.58, 28.08, 29.1, 29.76, 30.26, 30.76, 31.76, 32.6, 33.1, 33.78, 34.46, 35.12, 35.62, 36.12, 37.14, 37.8, 38.8, 39.64, 40.14, 40.82, 41.48, 42.16, 43.16, 43.66, 44.16, 44.98, 45.82, 46.32, 47.16, 48.16, 49.0, 49.84, 50.52, 51.18, 52.02, 53.18, 53.68, 54.7, 55.68, 56.52, 57.2, 57.86, 58.54, 59.2, 59.7, 60.54, 61.04, 61.54, 62.54, 63.2, 64.04, 64.54, 65.04, 65.88, 66.88, 67.38, 68.56, 69.56, 70.38, 71.22, 71.9, 72.56, 73.24, 73.9, 74.4, 75.24, 75.92, 76.56, 77.42, 78.4, 79.24, 80.08, 80.58, 81.08, 81.58, 82.24, 83.24, 83.74, 84.58, 85.08, 85.76, 86.92, 87.58, 88.08, 88.58, 89.08, 89.9, 90.4, 91.26, 92.26, 93.26, 94.26, 95.26, 96.26, 97.08, 97.92, 98.42, 99.26, 99.76, 100.26, 101.08, 101.92, 102.42, 103.26, 103.76, 104.26, 105.08, 105.58, 106.42, 106.92, 107.74, 108.24, 109.26, 109.9, 110.42, 111.24, 111.9, 112.56, 113.24, 113.9, 114.4, 116.24, 116.74, 117.24, 117.9, 118.4, 119.38, 119.9, 120.4, 121.06, 122.38, 123.06, 123.72, 124.22, 125.04, 125.88, 126.54, 127.56, 128.54, 129.04, 129.54, 130.36, 131.2, 131.88, 132.54, 133.38, 134.36, 135.2, 135.7, 136.2, 136.88, 138.04, 138.7, 139.2, 139.7, 140.2, 141.2, 141.86, 142.54, 143.2, 143.7, 144.52, 145.2, 145.86, 146.36, 147.54, 148.2, 148.7, 149.2, 149.86, 150.36, 150.86, 151.7, 152.52, 153.02, 153.86, 154.36, 154.86, 155.68, 156.52, 157.2, 157.86, 159.2, 159.7, 160.2, 161.04, 162.2, 162.86, 163.7, 164.7, 165.7, 166.2, 167.04, 168.04, 168.7, 169.7];
 
   const SONGS = [
-    { id: "cristovao", title: "Sanfona de Cristóvão", description: "Christopher de Assis Pereira", cover: "assets/sertao-magico.png?v=0.8.1", src: "musicas/safona_cristovao.m4a?v=0.8.1", label: "SH", theme: "sertao", difficulty: "ARRETADA", peppers: 3, beats: CRISTOVAO_BEATS, fallTime: 2.3, scoreMultiplier: 1 },
-    { id: "cabra", title: "O Cabra do Celular", description: "Christopher de Assis Pereira", cover: "assets/cabra-celular.png?v=0.8.1", src: "musicas/cabra_celular.m4a?v=0.8.1", label: "CC", theme: "celular", difficulty: "ACOCHADA", peppers: 4, beats: CABRA_BEATS, fallTime: 2.2, scoreMultiplier: 1.15 },
-    { id: "forrozear", title: "Aprendendo a Forrozear", description: "Christopher de Assis Pereira", cover: "assets/aprendendo-forrozear.png?v=0.8.1", src: "musicas/aprendendo_forrozear.m4a?v=0.8.1", label: "AF", theme: "baile", difficulty: "INVOCADA", peppers: 5, beats: FORROZEAR_BEATS, fallTime: 2.1, scoreMultiplier: 1.3 },
-    { id: "neve", title: "Forró Paralelo na Neve", description: "Jorge do Rojão feat. Christopher de Assis Pereira", cover: "assets/forro-neve.png?v=0.8.1", src: "musicas/forro_neve.m4a?v=0.8.1", label: "FN", theme: "neve", difficulty: "ARRETADA", peppers: 3, beats: NEVE_BEATS, fallTime: 2.25, scoreMultiplier: 1 }
+    { id: "cristovao", title: "Sanfona de Cristóvão", description: "Christopher de Assis Pereira", cover: "assets/sertao-magico.png?v=0.9.0", src: "musicas/safona_cristovao.m4a?v=0.9.0", label: "SH", theme: "sertao", difficulty: "ARRETADA", peppers: 3, beats: CRISTOVAO_BEATS, fallTime: 2.3, scoreMultiplier: 1 },
+    { id: "cabra", title: "O Cabra do Celular", description: "Christopher de Assis Pereira", cover: "assets/cabra-celular.png?v=0.9.0", src: "musicas/cabra_celular.m4a?v=0.9.0", label: "CC", theme: "celular", difficulty: "ACOCHADA", peppers: 4, beats: CABRA_BEATS, fallTime: 2.2, scoreMultiplier: 1.15 },
+    { id: "forrozear", title: "Aprendendo a Forrozear", description: "Christopher de Assis Pereira", cover: "assets/aprendendo-forrozear.png?v=0.9.0", src: "musicas/aprendendo_forrozear.m4a?v=0.9.0", label: "AF", theme: "baile", difficulty: "INVOCADA", peppers: 5, beats: FORROZEAR_BEATS, fallTime: 2.1, scoreMultiplier: 1.3 },
+    { id: "neve", title: "Forró Paralelo na Neve", description: "Jorge do Rojão feat. Christopher de Assis Pereira", cover: "assets/forro-neve.png?v=0.9.0", src: "musicas/forro_neve.m4a?v=0.9.0", label: "FN", theme: "neve", difficulty: "ARRETADA", peppers: 3, beats: NEVE_BEATS, fallTime: 2.25, scoreMultiplier: 1 }
   ];
 
   const GESTURES = [
-    { id: "open", name: "Toda aberta", symbol: "↔", frame: "assets/frames/sanfona_totalmente_aberta.png?v=0.8.1", left: [.14, .72], right: [.86, .72], xTolerance: .11, yTolerance: .09 },
-    { id: "closed", name: "Toda fechada", symbol: "→←", frame: "assets/frames/sanfona_totalmente_fechada.png?v=0.8.1", left: [.38, .72], right: [.62, .72], xTolerance: .095, yTolerance: .09 },
-    { id: "up", name: "Tudo pra cima", symbol: "↑ ↑", frame: "assets/frames/sanfona_tudo_cima.png?v=0.8.1", left: [.32, .57], right: [.68, .57], xTolerance: .115, yTolerance: .085 },
-    { id: "down", name: "Tudo pra baixo", symbol: "↓ ↓", frame: "assets/frames/sanfona_tudo_baixo.png?v=0.8.1", left: [.32, .88], right: [.68, .88], xTolerance: .115, yTolerance: .085 },
+    { id: "open", name: "Toda aberta", symbol: "↔", frame: "assets/frames/sanfona_totalmente_aberta.png?v=0.9.0", left: [.14, .72], right: [.86, .72], xTolerance: .11, yTolerance: .09 },
+    { id: "closed", name: "Toda fechada", symbol: "→←", frame: "assets/frames/sanfona_totalmente_fechada.png?v=0.9.0", left: [.38, .72], right: [.62, .72], xTolerance: .095, yTolerance: .09 },
+    { id: "up", name: "Tudo pra cima", symbol: "↑ ↑", frame: "assets/frames/sanfona_tudo_cima.png?v=0.9.0", left: [.32, .57], right: [.68, .57], xTolerance: .115, yTolerance: .085 },
+    { id: "down", name: "Tudo pra baixo", symbol: "↓ ↓", frame: "assets/frames/sanfona_tudo_baixo.png?v=0.9.0", left: [.32, .88], right: [.68, .88], xTolerance: .115, yTolerance: .085 },
   ];
 
   const FEEDBACK_EXPRESSIONS = {
@@ -99,6 +99,7 @@
   const cameraOptions = {
     onFrame: () => {
       const tracked = camera.tracked;
+      if (recording && controlMode === 'camera') sampleEditorPose(camera.pose());
       const name = GESTURES.find(g => g.id === camera.pose())?.name;
       $('#camera-tracking').textContent = tracked
         ? `${camera.air ? 'Pulsos reconhecidos' : 'IDs 0 e 1 encontrados'} • detector na ${camera.detectorMode === 'página' ? 'página' : 'execução em segundo plano'} • ${camera.processingMs} ms • abertura ${Math.round(camera.opening() * 100)}%${name ? ` • ${name}` : ''}`
@@ -151,7 +152,7 @@
     const offline=$('#offline-panel');
     const root=offline && !offline.hidden ? offline : !modal.hidden ? modal : $('#'+state.screen);
     const allowed=controlMode==='camera' && camera.active && !document.hidden &&
-      (root===offline || root===modal || ['title-screen','select-screen','tutorial-screen','camera-screen'].includes(state.screen)) &&
+      (root===offline || root===modal || ['title-screen','select-screen','tutorial-screen','camera-screen','editor-screen'].includes(state.screen) && !recording) &&
       !(state.screen==='camera-screen' && root!==offline && $('#camera-calibrate').disabled);
     const buttons=allowed ? [...root.querySelectorAll('button')].filter(b=>!b.disabled && b.getClientRects().length) : [];
     const quietScreen=['title-screen','select-screen'].includes(state.screen) && root!==modal && root!==offline;
@@ -378,19 +379,19 @@
 
   async function preloadGame() {
     const imageAssets = [
-      "assets/cap-systems-logo.png?v=0.8.1",
-      "assets/sertao-magico.png?v=0.8.1",
-      "assets/cabra-celular.png?v=0.8.1",
-      "assets/aprendendo-forrozear.png?v=0.8.1",
-      "assets/title-background.png?v=0.8.1",
+      "assets/cap-systems-logo.png?v=0.9.0",
+      "assets/sertao-magico.png?v=0.9.0",
+      "assets/cabra-celular.png?v=0.9.0",
+      "assets/aprendendo-forrozear.png?v=0.9.0",
+      "assets/title-background.png?v=0.9.0",
       ...SONGS.map(song=>song.cover),
       ...GESTURES.map((gesture) => gesture.frame)
     ];
     const audioAssets = [
       ...SONGS.map((song) => song.src),
-      "sons/derrota.m4a?v=0.8.1",
-      "sons/tile_screen.m4a?v=0.8.1",
-      "sons/vitoria.m4a?v=0.8.1"
+      "sons/derrota.m4a?v=0.9.0",
+      "sons/tile_screen.m4a?v=0.9.0",
+      "sons/vitoria.m4a?v=0.9.0"
     ];
     const total = imageAssets.length + audioAssets.length;
     let completed = 0;
@@ -525,6 +526,7 @@
     stopAllSounds();
     const song = selectedSong();
     $("#game-screen").dataset.theme = song.theme;
+    music.src = song.src;
     showScreen("game-screen");
     if (resetState) resetGameState();
     const sessionGeneration = state.sessionGeneration;
@@ -558,7 +560,8 @@
     $("#countdown").classList.add("hidden");
     count.style.fontSize = "";
 
-    state.notes = buildNotes(song.beats);
+    const chart = readChart(song.id);
+    state.notes = chart ? chart.map(({time,pose},id)=>({id,time,gesture:GESTURES.find(g=>g.id===pose),judged:false,hit:false,element:null,poseSince:null,startPositions:null})) : buildNotes(song.beats);
     state.running = true;
     state.paused = false;
     music.currentTime = 0;
@@ -1104,6 +1107,110 @@
 
   function delay(ms) { return new Promise((resolve) => setTimeout(resolve, ms)); }
 
+  const charts = new Map();
+  let recording = false, draft = null, editorCalibration = false;
+  let candidate = null, candidateTime = 0;
+  const editorSong = $('#editor-song');
+  for (const song of SONGS) editorSong.add(new Option(song.title,song.id));
+  function validChart(notes) {
+    return Array.isArray(notes) && notes.length>0 && notes.length<=10000 && notes.every((n,i)=>
+      n && Number.isFinite(n.time) && n.time>=0 && n.time<3600 && GESTURES.some(g=>g.id===n.pose) &&
+      (!i || (n.time>notes[i-1].time && (n.pose==='closed') !== (notes[i-1].pose==='closed'))));
+  }
+  function readChart(id) {
+    if (!charts.has(id)) {
+      const saved=window.SanfonaChartStore?.load(id);
+      if(validChart(saved)) charts.set(id,saved);
+    }
+    return charts.get(id);
+  }
+  function editorUI(message) {
+    const saved=readChart(editorSong.value);
+    editorSong.disabled=!!draft;
+    $('#editor-record').hidden=!!draft;
+    $('#editor-save').hidden=!draft;
+    $('#editor-save').disabled=!draft?.length;
+    $('#editor-cancel').hidden=!draft;
+    $('#editor-export').hidden=!!draft || !saved;
+    $('#editor-import').hidden=!!draft;
+    $('#editor-back').hidden=!!draft;
+    $('#editor-pads').hidden=!recording || controlMode!=='touch';
+    $('#editor-state').textContent=message || (saved ? 'Sequência salva • '+saved.length+' movimentos' : 'Esta música usa uma sequência aleatória.');
+    const notes=draft || saved || [];
+    $('#editor-sequence').textContent=notes.slice(-6).map(n=>GESTURES.find(g=>g.id===n.pose).name).join(' → ');
+  }
+  function appendEditorPose(pose,time) {
+    if(!recording || music.paused || !pose) return;
+    const last=draft.at(-1);
+    if(last && (time<=last.time || (pose==='closed')===(last.pose==='closed'))) return;
+    draft.push({pose,time});
+    editorUI('Gravando • '+draft.length+' movimentos');
+  }
+  function sampleEditorPose(pose) {
+    const time=music.currentTime;
+    if(candidate!==pose) { candidate=pose; candidateTime=time; }
+    else if(pose && time-candidateTime>=.08) appendEditorPose(pose,candidateTime);
+  }
+  function interruptEditor() {
+    if (!recording) return;
+    recording=false;
+    music.pause();
+    editorUI('Gravação interrompida. Salve a sequência ou descarte para recomeçar.');
+  }
+  for(const gesture of GESTURES) {
+    const pad=document.createElement('button');
+    pad.textContent=gesture.name;pad.className='button button-secondary';
+    pad.onclick=()=>appendEditorPose(gesture.id,music.currentTime);
+    $('#editor-pads').append(pad);
+  }
+  function openEditor() {
+    showScreen('editor-screen');editorUI();
+  }
+  async function recordEditor() {
+    if(draft) return;
+    if(controlMode==='camera' && (!camera.active || !camera.calibrated)) {
+      editorCalibration=true;await openCameraSetup();return;
+    }
+    const song=SONGS.find(s=>s.id===editorSong.value);
+    music.src=song.src;music.currentTime=0;draft=[];candidate=null;
+    editorUI('Preparando música…');
+    try {
+      await music.play();
+      if(!draft) return;
+      recording=true;editorUI('Gravando • faça o primeiro movimento');
+    } catch { draft=null;editorUI('Não foi possível tocar a música. Tente novamente.'); }
+  }
+  function storeChart(notes) {
+    const id=editorSong.value;
+    let persisted=false;
+    try { persisted=window.SanfonaChartStore?.save(id,notes); } catch {}
+    charts.set(id,notes);draft=null;recording=false;music.pause();
+    editorUI(persisted?'Sequência salva neste navegador.':'Sequência ativa nesta sessão. Exporte para guardar uma cópia.');
+  }
+  $('#editor-button').onclick=()=>{editorSong.value=selectedSong().id;openEditor();};
+  editorSong.onchange=()=>editorUI();
+  $('#editor-record').onclick=recordEditor;
+  $('#editor-save').onclick=()=>{if(validChart(draft))storeChart(draft);};
+  $('#editor-cancel').onclick=()=>{recording=false;draft=null;music.pause();editorUI();};
+  $('#editor-back').onclick=()=>{updateSongSelection(state.selectedSong);showScreen('title-screen');};
+  $('#editor-export').onclick=()=>{
+    const song=editorSong.value, notes=readChart(song);
+    if(!notes)return;
+    const url=URL.createObjectURL(new Blob([JSON.stringify({version:1,song,notes})],{type:'application/json'}));
+    const link=document.createElement('a');link.href=url;link.download='sanfona-'+song+'.json';link.click();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+  };
+  $('#editor-import').onclick=()=>$('#editor-file').click();
+  $('#editor-file').onchange=async event=>{
+    const file=event.target.files[0];event.target.value='';
+    if(!file)return;
+    try {
+      if(file.size>1000000)throw Error();
+      const data=JSON.parse(await file.text());
+      if(data.version!==1 || data.song!==editorSong.value || !validChart(data.notes))throw Error();
+      storeChart(data.notes);
+    } catch {editorUI('Arquivo inválido ou de outra música.');}
+  };
   $('#choose-touch').addEventListener('click',()=>{ void chooseMode('touch'); });
   $('#choose-air').addEventListener('click',()=>{ void chooseMode('air'); });
   $('#choose-camera').addEventListener('click',()=>{ void chooseMode('camera'); });
@@ -1113,8 +1220,8 @@
   $('#camera-mode').addEventListener('click', () => { void openCameraSetup(); });
   $('#camera-calibrate').addEventListener('click', () => { void calibrateCamera(); });
   $('#camera-retry').addEventListener('click', () => { void openCameraSetup(); });
-  $('#camera-ready').addEventListener('click', () => { if (camera.calibrated) showScreen('select-screen'); });
-  $('#camera-back').addEventListener('click', () => { setControlMode('touch'); showScreen('select-screen'); });
+  $('#camera-ready').addEventListener('click', () => { if (camera.calibrated) { if(editorCalibration){editorCalibration=false;openEditor();} else showScreen('select-screen'); } });
+  $('#camera-back').addEventListener('click', () => { setControlMode('touch'); if(editorCalibration){editorCalibration=false;openEditor();} else showScreen('select-screen'); });
   $('#recalibrate-button').addEventListener('click', () => { void openCameraSetup(); });
   $('#camera-latency').addEventListener('input', event => {
     camera.latency = Number(event.target.value);
@@ -1137,10 +1244,11 @@
     else showScreen("select-screen");
   });
   music.addEventListener("ended", () => {
+    if(recording){recording=false;editorUI('Música concluída. Salve a sequência ou descarte a gravação.');return;}
     if (state.running) endGame("Mandou bem demais!", `Você dominou ${selectedSong().title}. O salão inteiro ouviu seu show!`, true);
   });
   window.addEventListener('resize', () => { layoutMetrics = null; layoutAccordion(); });
-  document.addEventListener("visibilitychange", () => { if (document.hidden && state.running && !state.paused) pauseGame(); });
+  document.addEventListener("visibilitychange", () => { if (document.hidden) { interruptEditor(); if (state.running && !state.paused) pauseGame(); } });
   document.addEventListener('visibilitychange', () => {
     if (document.hidden && state.screen === 'camera-screen') {
       calibrationRun++;
@@ -1153,7 +1261,7 @@
 
   if (sdk) {
     // Both portrait and landscape are supported; do not lock orientation.
-    sdk.onPause(() => { if (state.running && !state.paused) pauseGame(); });
+    sdk.onPause(() => { interruptEditor(); if (state.running && !state.paused) pauseGame(); });
     sdk.onResume(() => { if (state.running && state.paused) resumeGame(); });
     sdk.onMuteChange((muted) => {
       state.muted = muted;

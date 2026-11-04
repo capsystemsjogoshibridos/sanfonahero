@@ -1,5 +1,9 @@
 (() => {
   'use strict';
+  window.SanfonaChartStore = {
+    load(id) { try { return JSON.parse(localStorage.getItem('sanfona-chart-v1:'+id)); } catch { return null; } },
+    save(id,notes) { localStorage.setItem('sanfona-chart-v1:'+id,JSON.stringify(notes));return true; }
+  };
   const calibrationKey = air => air ? 'airccordion-skeleton-v1' : 'sanfona-calibration-v1';
   window.SanfonaCalibrationStore = {
     load(air) { try { return JSON.parse(localStorage.getItem(calibrationKey(air))); } catch { return null; } },
