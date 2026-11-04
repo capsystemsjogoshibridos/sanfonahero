@@ -64,7 +64,13 @@
         if (generation !== this.generation) { stream.getTracks().forEach(t => t.stop()); return false; }
         this.stream = stream;
         this.video.srcObject = stream;
-        await this.video.play();
+        let playbackTimeout;
+        try {
+          await Promise.race([
+            this.video.play(),
+            new Promise((_, reject) => { playbackTimeout=setTimeout(() => reject(new Error('A câmera não iniciou a imagem. Clique novamente no modo desejado para tentar outra vez.')),12000); })
+          ]);
+        } finally { clearTimeout(playbackTimeout); }
         if (generation !== this.generation) return false;
         const aspect = this.video.videoWidth / this.video.videoHeight;
         if (this.calibrated && this.calibrationAspect && Math.abs(aspect / this.calibrationAspect - 1) > .1) {
@@ -76,7 +82,7 @@
         // Normal local scripts provide a fallback without changing permissions.
         this.detectorMode = 'página';
         try {
-          const worker = new Worker(this.air ? 'pose-worker.js?v=0.9.0' : 'camera-worker.js?v=0.9.0');
+          const worker = new Worker(this.air ? 'pose-worker.js?v=0.9.2' : 'camera-worker.js?v=0.9.2');
           this.worker = worker;
           this.detectorMode = 'segundo plano';
           worker.onmessage = event => {
