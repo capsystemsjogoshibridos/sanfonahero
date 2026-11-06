@@ -82,6 +82,8 @@
     }
     detect(image) {
       const {width,height}=image;
+      this.fusion ??= new globalThis.AirFusion();
+      const colors=this.fusion.colors.detect(image);
       const size=257, scale=(size-1)/Math.max(width-1,height-1);
       const dx=(size-1-(width-1)*scale)/2, dy=(size-1-(height-1)*scale)/2;
       const data=new Float32Array(size*size*3).fill(-1);
@@ -107,12 +109,13 @@
           x:((cell%heat.size)*16+offsets[cell*34+17+j]-dx)/scale,
           y:(Math.floor(cell/heat.size)*16+offsets[cell*34+j]-dy)/scale};
       });
-      return [9,10].flatMap((joint,id)=>{
+      const skeleton = [9,10].flatMap((joint,id)=>{
         const wrist=this.joints[joint], shoulder=this.joints[5+id], elbow=this.joints[7+id];
         if(wrist.score<.35 || Math.max(shoulder.score,elbow.score)<.4) return [];
         const {x,y}=wrist;
-        return [{id,corners:[{x:x-4,y:y-4},{x:x+4,y:y-4},{x:x+4,y:y+4},{x:x-4,y:y+4}]}];
+        return [{id,confidence:Math.min(wrist.score,Math.max(shoulder.score,elbow.score)),corners:[{x:x-4,y:y-4},{x:x+4,y:y-4},{x:x+4,y:y+4},{x:x-4,y:y+4}]}];
       });
+      return this.fusion.combine(skeleton,colors,width,height);
     }
   }
   globalThis.AirDetector=AirDetector;

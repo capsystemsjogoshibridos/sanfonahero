@@ -23,7 +23,7 @@
       this.latency = 80;
     }
     get active() { return !!this.stream?.getVideoTracks().some(track => track.readyState === 'live'); }
-    get freshnessMs() { return this.air ? 500 : 250; }
+    get freshnessMs() { return this.air ? Math.max(500,Math.min(1500,(this.processingAverage||0)*2+150)) : 250; }
     get tracked() { return this.active && !!this.points && performance.now() - this.lastSeen < this.freshnessMs; }
     get cursorTracked() { return this.active && !!this.cursorPoint && performance.now() - this.cursorSeen < this.freshnessMs; }
     get calibrated() { return ['closed', 'open', 'up', 'down'].every(id => !!this.templates[id]); }
@@ -35,6 +35,7 @@
       if (!ids.every(id => Array.isArray(saved.templates?.[id]) && saved.templates[id].length === 2 && saved.templates[id].every(p => Number.isFinite(p.x) && Number.isFinite(p.y) && p.x >= 0 && p.x <= 1 && p.y >= 0 && p.y <= 1))) return;
       this.templates = Object.fromEntries(ids.map(id => [id, saved.templates[id]]));
       this.calibrationAspect = saved.aspect;
+      if(this.air && Array.isArray(saved.alignment) && saved.alignment.length===2 && saved.alignment.every(p=>p===null || (Number.isFinite(p.x)&&Number.isFinite(p.y)&&Math.abs(p.x)<.3&&Math.abs(p.y)<.3))) this.alignment=saved.alignment;
       this.poseCacheValid = false;
     }
     async start() {
@@ -82,7 +83,7 @@
         // Normal local scripts provide a fallback without changing permissions.
         this.detectorMode = 'página';
         try {
-          const worker = new Worker(this.air ? 'pose-worker.js?v=0.9.2' : 'camera-worker.js?v=0.9.2');
+          const worker = new Worker(this.air ? 'pose-worker.js?v=0.10.0' : 'camera-worker.js?v=0.10.0');
           this.worker = worker;
           this.detectorMode = 'segundo plano';
           worker.onmessage = event => {
@@ -155,13 +156,14 @@
         this.sentAt = now;
         this.busy = true;
         if (this.worker) {
-          try { this.worker.postMessage({ image, capturedAt: now }, [image.data.buffer]); }
+          try { this.worker.postMessage({ image, capturedAt: now, alignment:this.air?this.alignment:undefined }, [image.data.buffer]); }
           catch { this.usePageDetector(); }
         } else {
           try {
             if (this.air && !this.detector) this.detector=new window.AirDetector();
+            if(this.air && this.alignment) { this.detector.fusion ??= new window.AirFusion(); this.detector.fusion.offsets=this.alignment; }
             const markers = this.detector.detect(image).filter(marker => marker.id === 0 || marker.id === 1);
-            this.receive({ markers, joints:this.detector.joints, capturedAt: now });
+            this.receive({ markers, joints:this.detector.joints, alignment:this.detector.fusion?.offsets, capturedAt: now });
           } catch (error) {
             console.warn('Falha no detector local:', error.message);
             this.fail('Não foi possível ler a imagem da câmera. Reabra a câmera e confira se todos os arquivos do jogo foram carregados.');
@@ -171,7 +173,8 @@
       }
       this.raf = requestAnimationFrame(() => this.loop());
     }
-    receive({ markers, joints, capturedAt, error }) {
+    receive({ markers, joints, alignment, capturedAt, error }) {
+      if(this.air && alignment) this.alignment=alignment;
       this.busy = false;
       if (error) { this.fail('Falha no reconhecimento dos marcadores. Tente abrir a câmera novamente.'); return; }
       this.processingMs = Math.round(performance.now() - capturedAt);
@@ -213,7 +216,7 @@
         } : p);
         this.lastSeen = capturedAt;
         this.history.push({ time: capturedAt, points: raw });
-        this.history = this.history.filter(s => capturedAt - s.time < 1200);
+        this.history = this.history.filter(s => capturedAt - s.time < (this.air ? 3000 : 1200));
       } else { this.points = null; this.history = []; }
       this.onFrame(this);
     }
@@ -234,7 +237,6 @@
         for(const point of joints.slice(5,13)) if(point.score>=.35) {
           ctx.beginPath();ctx.arc(point.x,point.y,3,0,Math.PI*2);ctx.fill();
         }
-        return;
       }
       for (const marker of markers) {
         if (this.air) {
@@ -252,9 +254,9 @@
       }
     }
     capture(id) {
-      const recent = this.history.filter(s => performance.now() - s.time < (this.air ? 1400 : 850));
+      const recent = this.history.filter(s => performance.now() - s.time < (this.air ? Math.max(1400,Math.min(3000,(this.processingAverage||0)*5+600)) : 850));
       if (!this.tracked || recent.length < (this.air ? 3 : 5) || recent.at(-1).time - recent[0].time < 550) {
-        if(this.air) throw new Error('Mantenha os dois pulsos visíveis e firmes por um segundo.');
+        if(this.air) throw new Error('Segure a pose firme. Cada lado pode ser reconhecido pelo pulso ou pelo ponto colorido.');
         throw new Error('Mantenha os dois marcadores visíveis e firmes por um segundo.');
       }
       const mean = average(recent.map(s => s.points));
@@ -271,7 +273,7 @@
       }
       this.templates[id] = mean;
       this.poseCacheValid = false;
-      if (this.calibrated) window.SanfonaCalibrationStore?.save({ version: 1, aspect: this.calibrationAspect, templates: this.templates }, this.air);
+      if (this.calibrated) window.SanfonaCalibrationStore?.save({ version: 1, aspect: this.calibrationAspect, templates: this.templates, alignment:this.air?this.alignment:undefined }, this.air);
     }
     score(id) {
       if (!this.tracked || !this.templates[id]) return Infinity;
