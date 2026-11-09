@@ -28,17 +28,17 @@
   const NEVE_BEATS = [4.18, 5.0, 6.86, 7.56, 8.56, 9.52, 10.2, 10.86, 11.54, 12.38, 13.22, 13.88, 14.38, 15.04, 15.72, 17.54, 18.06, 18.72, 19.38, 20.22, 20.9, 21.56, 22.08, 22.9, 23.74, 24.4, 25.08, 25.74, 26.24, 27.08, 27.58, 28.08, 29.1, 29.76, 30.26, 30.76, 31.76, 32.6, 33.1, 33.78, 34.46, 35.12, 35.62, 36.12, 37.14, 37.8, 38.8, 39.64, 40.14, 40.82, 41.48, 42.16, 43.16, 43.66, 44.16, 44.98, 45.82, 46.32, 47.16, 48.16, 49.0, 49.84, 50.52, 51.18, 52.02, 53.18, 53.68, 54.7, 55.68, 56.52, 57.2, 57.86, 58.54, 59.2, 59.7, 60.54, 61.04, 61.54, 62.54, 63.2, 64.04, 64.54, 65.04, 65.88, 66.88, 67.38, 68.56, 69.56, 70.38, 71.22, 71.9, 72.56, 73.24, 73.9, 74.4, 75.24, 75.92, 76.56, 77.42, 78.4, 79.24, 80.08, 80.58, 81.08, 81.58, 82.24, 83.24, 83.74, 84.58, 85.08, 85.76, 86.92, 87.58, 88.08, 88.58, 89.08, 89.9, 90.4, 91.26, 92.26, 93.26, 94.26, 95.26, 96.26, 97.08, 97.92, 98.42, 99.26, 99.76, 100.26, 101.08, 101.92, 102.42, 103.26, 103.76, 104.26, 105.08, 105.58, 106.42, 106.92, 107.74, 108.24, 109.26, 109.9, 110.42, 111.24, 111.9, 112.56, 113.24, 113.9, 114.4, 116.24, 116.74, 117.24, 117.9, 118.4, 119.38, 119.9, 120.4, 121.06, 122.38, 123.06, 123.72, 124.22, 125.04, 125.88, 126.54, 127.56, 128.54, 129.04, 129.54, 130.36, 131.2, 131.88, 132.54, 133.38, 134.36, 135.2, 135.7, 136.2, 136.88, 138.04, 138.7, 139.2, 139.7, 140.2, 141.2, 141.86, 142.54, 143.2, 143.7, 144.52, 145.2, 145.86, 146.36, 147.54, 148.2, 148.7, 149.2, 149.86, 150.36, 150.86, 151.7, 152.52, 153.02, 153.86, 154.36, 154.86, 155.68, 156.52, 157.2, 157.86, 159.2, 159.7, 160.2, 161.04, 162.2, 162.86, 163.7, 164.7, 165.7, 166.2, 167.04, 168.04, 168.7, 169.7];
 
   const SONGS = [
-    { id: "cristovao", title: "Sanfona de Cristóvão", description: "Christopher de Assis Pereira", cover: "assets/sertao-magico.png?v=0.10.0", src: "musicas/safona_cristovao.m4a?v=0.10.0", label: "SH", theme: "sertao", difficulty: "ARRETADA", peppers: 3, beats: CRISTOVAO_BEATS, fallTime: 2.3, scoreMultiplier: 1 },
-    { id: "cabra", title: "O Cabra do Celular", description: "Christopher de Assis Pereira", cover: "assets/cabra-celular.png?v=0.10.0", src: "musicas/cabra_celular.m4a?v=0.10.0", label: "CC", theme: "celular", difficulty: "ACOCHADA", peppers: 4, beats: CABRA_BEATS, fallTime: 2.2, scoreMultiplier: 1.15 },
-    { id: "forrozear", title: "Aprendendo a Forrozear", description: "Christopher de Assis Pereira", cover: "assets/aprendendo-forrozear.png?v=0.10.0", src: "musicas/aprendendo_forrozear.m4a?v=0.10.0", label: "AF", theme: "baile", difficulty: "INVOCADA", peppers: 5, beats: FORROZEAR_BEATS, fallTime: 2.1, scoreMultiplier: 1.3 },
-    { id: "neve", title: "Forró Paralelo na Neve", description: "Jorge do Rojão feat. Christopher de Assis Pereira", cover: "assets/forro-neve.png?v=0.10.0", src: "musicas/forro_neve.m4a?v=0.10.0", label: "FN", theme: "neve", difficulty: "ARRETADA", peppers: 3, beats: NEVE_BEATS, fallTime: 2.25, scoreMultiplier: 1 }
+    { id: "cristovao", title: "Sanfona de Cristóvão", description: "Christopher de Assis Pereira", cover: "assets/sertao-magico.png?v=0.11.0", src: "musicas/safona_cristovao.m4a?v=0.11.0", label: "SH", theme: "sertao", difficulty: "ARRETADA", peppers: 3, beats: CRISTOVAO_BEATS, fallTime: 2.3, scoreMultiplier: 1 },
+    { id: "cabra", title: "O Cabra do Celular", description: "Christopher de Assis Pereira", cover: "assets/cabra-celular.png?v=0.11.0", src: "musicas/cabra_celular.m4a?v=0.11.0", label: "CC", theme: "celular", difficulty: "ACOCHADA", peppers: 4, beats: CABRA_BEATS, fallTime: 2.2, scoreMultiplier: 1.15 },
+    { id: "forrozear", title: "Aprendendo a Forrozear", description: "Christopher de Assis Pereira", cover: "assets/aprendendo-forrozear.png?v=0.11.0", src: "musicas/aprendendo_forrozear.m4a?v=0.11.0", label: "AF", theme: "baile", difficulty: "INVOCADA", peppers: 5, beats: FORROZEAR_BEATS, fallTime: 2.1, scoreMultiplier: 1.3 },
+    { id: "neve", title: "Forró Paralelo na Neve", description: "Jorge do Rojão feat. Christopher de Assis Pereira", cover: "assets/forro-neve.png?v=0.11.0", src: "musicas/forro_neve.m4a?v=0.11.0", label: "FN", theme: "neve", difficulty: "ARRETADA", peppers: 3, beats: NEVE_BEATS, fallTime: 2.25, scoreMultiplier: 1 }
   ];
 
   const GESTURES = [
-    { id: "open", name: "Toda aberta", symbol: "↔", frame: "assets/frames/sanfona_totalmente_aberta.png?v=0.10.0", left: [.14, .72], right: [.86, .72], xTolerance: .11, yTolerance: .09 },
-    { id: "closed", name: "Toda fechada", symbol: "→←", frame: "assets/frames/sanfona_totalmente_fechada.png?v=0.10.0", left: [.38, .72], right: [.62, .72], xTolerance: .095, yTolerance: .09 },
-    { id: "up", name: "Tudo pra cima", symbol: "↑ ↑", frame: "assets/frames/sanfona_tudo_cima.png?v=0.10.0", left: [.32, .57], right: [.68, .57], xTolerance: .115, yTolerance: .085 },
-    { id: "down", name: "Tudo pra baixo", symbol: "↓ ↓", frame: "assets/frames/sanfona_tudo_baixo.png?v=0.10.0", left: [.32, .88], right: [.68, .88], xTolerance: .115, yTolerance: .085 },
+    { id: "open", name: "Toda aberta", symbol: "↔", frame: "assets/frames/sanfona_totalmente_aberta.png?v=0.11.0", left: [.14, .72], right: [.86, .72], xTolerance: .11, yTolerance: .09 },
+    { id: "closed", name: "Toda fechada", symbol: "→←", frame: "assets/frames/sanfona_totalmente_fechada.png?v=0.11.0", left: [.38, .72], right: [.62, .72], xTolerance: .095, yTolerance: .09 },
+    { id: "up", name: "Tudo pra cima", symbol: "↑ ↑", frame: "assets/frames/sanfona_tudo_cima.png?v=0.11.0", left: [.32, .57], right: [.68, .57], xTolerance: .115, yTolerance: .085 },
+    { id: "down", name: "Tudo pra baixo", symbol: "↓ ↓", frame: "assets/frames/sanfona_tudo_baixo.png?v=0.11.0", left: [.32, .88], right: [.68, .88], xTolerance: .115, yTolerance: .085 },
   ];
 
   const FEEDBACK_EXPRESSIONS = {
@@ -383,19 +383,19 @@
 
   async function preloadGame() {
     const imageAssets = [
-      "assets/cap-systems-logo.png?v=0.10.0",
-      "assets/sertao-magico.png?v=0.10.0",
-      "assets/cabra-celular.png?v=0.10.0",
-      "assets/aprendendo-forrozear.png?v=0.10.0",
-      "assets/title-background.png?v=0.10.0",
+      "assets/cap-systems-logo.png?v=0.11.0",
+      "assets/sertao-magico.png?v=0.11.0",
+      "assets/cabra-celular.png?v=0.11.0",
+      "assets/aprendendo-forrozear.png?v=0.11.0",
+      "assets/title-background.png?v=0.11.0",
       ...SONGS.map(song=>song.cover),
       ...GESTURES.map((gesture) => gesture.frame)
     ];
     const audioAssets = [
       ...SONGS.map((song) => song.src),
-      "sons/derrota.m4a?v=0.10.0",
-      "sons/tile_screen.m4a?v=0.10.0",
-      "sons/vitoria.m4a?v=0.10.0"
+      "sons/derrota.m4a?v=0.11.0",
+      "sons/tile_screen.m4a?v=0.11.0",
+      "sons/vitoria.m4a?v=0.11.0"
     ];
     const total = imageAssets.length + audioAssets.length;
     let completed = 0;
@@ -510,7 +510,9 @@
       }
       const gestureIndex=bag.shift();
       previous = gestureIndex;
-      return { id: index, time, gesture: GESTURES[gestureIndex], judged: false, hit: false, element: null, poseSince: null, startPositions: null };
+      const gap = (spacedBeats[index+1] ?? time) - time;
+      const duration = gap >= 1.7 && random() < .2 ? Math.min(2, gap - .65) : 0;
+      return { id: index, time, duration, gesture: GESTURES[gestureIndex], judged: false, hit: false, element: null, poseSince: null, startPositions: null };
     });
   }
 
@@ -565,7 +567,7 @@
     count.style.fontSize = "";
 
     const chart = readChart(song.id);
-    state.notes = chart ? chart.map(({time,pose},id)=>({id,time,gesture:GESTURES.find(g=>g.id===pose),judged:false,hit:false,element:null,poseSince:null,startPositions:null})) : buildNotes(song.beats);
+    state.notes = chart ? chart.map(({time,pose,duration=0},id)=>({id,time,duration,gesture:GESTURES.find(g=>g.id===pose),judged:false,hit:false,element:null,poseSince:null,startPositions:null})) : buildNotes(song.beats);
     state.running = true;
     state.paused = false;
     music.currentTime = 0;
@@ -656,23 +658,39 @@
       }
       if (!note.element) continue;
 
-      const progress = 1 - (note.time-visualNow) / fallTime;
+      const progress = Math.min(note.holding ? 1 : Infinity, 1 - (note.time-visualNow) / fallTime);
       const scale = .82 + Math.max(0, progress) * .18;
       const y = progress * travelDistance - imageHeight * .5 * scale;
       note.element.style.transform = `translate3d(0,${y.toFixed(2)}px,0) scale(${scale.toFixed(4)})`;
 
-      if (!note.judged && judgmentTime >= note.time - .5 && judgmentTime <= note.time + .4) {
+      if (note.duration && !note.judged) {
+        const remaining = note.holding ? Math.max(0,note.time+note.duration-judgmentTime) : note.duration;
+        note.element.style.setProperty('--tail-height', (remaining*travelDistance/fallTime/scale)+'px');
+      }
+      if (note.holding && !note.judged) {
+        if (evaluateGesture(note.gesture,null,false).valid) note.lostSince=null;
+        else note.lostSince ??= judgmentTime;
+        if (note.lostSince!=null && judgmentTime-note.lostSince>.22) registerMiss(note);
+        else if (judgmentTime>=note.time+note.duration) registerHit(note,note.timing);
+      }
+      if (!note.judged && !note.holding && judgmentTime >= note.time - .5 && judgmentTime <= note.time + .4) {
         const match = evaluateGesture(note.gesture, note.startPositions);
         if (match.valid) {
           note.poseSince ??= judgmentTime;
           const stableFor = judgmentTime - note.poseSince;
           const stabilityRequired = note.gesture.id.startsWith("curve-") ? .02 : .03;
-          if (judgmentTime >= note.time - .34 && stableFor >= stabilityRequired) registerHit(note, Math.abs(judgmentTime - note.time));
+          if (judgmentTime >= note.time - .34 && stableFor >= stabilityRequired) {
+            note.timing=Math.abs(judgmentTime-note.time);
+            if (note.duration) {
+              note.holding=true;
+              note.element.classList.add('holding');
+            } else registerHit(note,note.timing);
+          }
         } else {
           note.poseSince = null;
         }
       }
-      if (!note.judged && judgmentTime > note.time + .4) registerMiss(note);
+      if (!note.judged && !note.holding && judgmentTime > note.time + .4) registerMiss(note);
       if (note.judged && judgmentTime > note.time + .65) {
         note.element.remove();
         note.element = null;
@@ -684,7 +702,7 @@
 
   function createNote(note) {
     const element = document.createElement("div");
-    element.className = "game-note";
+    element.className = note.duration ? "game-note sustain" : "game-note";
     element.innerHTML = `<div><img class="note-frame" src="${note.gesture.frame}" alt="" /><b>${note.gesture.name}</b></div>`;
     return element;
   }
@@ -1114,12 +1132,29 @@
   const charts = new Map();
   let recording = false, draft = null, editorCalibration = false;
   let candidate = null, candidateTime = 0;
+  let activeEditorNote=null, pressedPad=null, editorVisual=null, editorVisualFrame=0, pendingRecording=null;
+  const sustainThreshold=.55;
+  function finishEditorNote(time=music.currentTime) {
+    if(activeEditorNote && time-activeEditorNote.time>=sustainThreshold) {
+      activeEditorNote.duration=time-activeEditorNote.time;
+    }
+    cancelAnimationFrame(editorVisualFrame);
+    if(editorVisual?.getAnimations()[0]?.playState==='finished') editorVisual.remove();
+    editorVisual=null;
+    activeEditorNote=null;
+  }
+  function releasePad() {
+    finishEditorNote();
+    pressedPad?.classList.remove('pressed');
+    pressedPad=null;
+  }
   const editorSong = $('#editor-song');
   for (const song of SONGS) editorSong.add(new Option(song.title,song.id));
   function validChart(notes) {
     return Array.isArray(notes) && notes.length>0 && notes.length<=10000 && notes.every((n,i)=>
       n && Number.isFinite(n.time) && n.time>=0 && n.time<3600 && GESTURES.some(g=>g.id===n.pose) &&
-      (!i || (n.time>notes[i-1].time && (n.pose==='closed') !== (notes[i-1].pose==='closed'))));
+      (n.duration===undefined || (Number.isFinite(n.duration) && n.duration>=0 && n.time+n.duration<=3600)) &&
+      (!i || (n.time>=notes[i-1].time+(notes[i-1].duration||0)-.000001 && n.time>notes[i-1].time && (n.pose==='closed') !== (notes[i-1].pose==='closed'))));
   }
   function readChart(id) {
     if (!charts.has(id)) {
@@ -1145,7 +1180,9 @@
     $('#editor-export').hidden=!!draft || !saved;
     $('#editor-import').hidden=!!draft;
     $('#editor-back').hidden=!!draft;
-    $('#editor-pads').hidden=!recording || controlMode!=='touch';
+    $('#editor-pads').hidden=!recording;
+    $('#editor-input-choice').hidden=controlMode!=='camera';
+    $('#editor-camera-input').disabled=!!draft && !camera.calibrated;
     $('#editor-state').textContent=message || (saved ? 'Sequência salva • '+saved.length+' movimentos' : 'Esta música usa uma sequência aleatória.');
     const notes=draft || saved || [];
     $('#editor-sequence').textContent=notes.slice(-6).map(n=>GESTURES.find(g=>g.id===n.pose).name).join(' → ');
@@ -1154,9 +1191,12 @@
     if(!recording || music.paused || !pose) return;
     const last=draft.at(-1);
     if(last && (time<=last.time || (pose==='closed')===(last.pose==='closed'))) return;
-    draft.push({pose,time});
+    finishEditorNote(time);
+    activeEditorNote={pose,time};
+    draft.push(activeEditorNote);
     editorUI('Gravando • '+draft.length+' movimentos');
     animateEditorNote(pose);
+    return activeEditorNote;
   }
   function clearEditorNotes() {
     $$('#editor-lane .game-note').forEach(el=>{el.getAnimations().forEach(a=>a.cancel());el.remove();});
@@ -1171,25 +1211,57 @@
     const duration=SONGS.find(s=>s.id===editorSong.value).fallTime*1000;
     const animation=element.animate([
       {transform:'translate3d(0,-125px,0)',opacity:1},
-      {transform:`translate3d(0,${lane.clientHeight}px,0)`,opacity:1}
-    ],{duration,easing:'linear'});
-    animation.onfinish=()=>element.remove();
+      {transform:`translate3d(0,${lane.clientHeight-element.offsetHeight}px,0)`,opacity:1}
+    ],{duration,easing:'linear',fill:'forwards'});
+    editorVisual=element;
+    animation.onfinish=()=>{if(editorVisual!==element)element.remove();};
+    const started=activeEditorNote.time;
+    const speed=lane.clientHeight*1000/duration;
+    function showDuration() {
+      if(editorVisual!==element) return;
+      const elapsed=music.currentTime-started;
+      if(elapsed>=sustainThreshold) {
+        element.classList.add('sustain');
+        element.style.setProperty('--tail-height',elapsed*speed+'px');
+        $('#editor-pose-label').textContent=gesture.name+' • '+elapsed.toFixed(1)+' s';
+      }
+      editorVisualFrame=requestAnimationFrame(showDuration);
+    }
+    showDuration();
   }
   function sampleEditorPose(pose) {
     const time=music.currentTime;
-    if(candidate!==pose) { candidate=pose; candidateTime=time; }
+    if(pressedPad || !$('#editor-camera-input').checked) return;
+    if(candidate!==pose) { finishEditorNote(time); candidate=pose; candidateTime=time; }
     else if(pose && time-candidateTime>=.08) appendEditorPose(pose,candidateTime);
   }
   function interruptEditor() {
+    if (pendingRecording && pendingRecording===draft) { pendingRecording=null; draft=null; music.pause(); editorUI(); return; }
     if (!recording) return;
+    releasePad();
     recording=false;
     music.pause();
     editorUI('Gravação interrompida. Salve a sequência ou descarte para recomeçar.');
   }
   for(const gesture of GESTURES) {
     const pad=document.createElement('button');
-    pad.textContent=gesture.name;pad.className='button button-secondary';
-    pad.onclick=()=>appendEditorPose(gesture.id,music.currentTime);
+    pad.className='button button-secondary';
+    const icon=document.createElement('img');
+    icon.src=gesture.frame; icon.alt='';
+    pad.append(icon,gesture.name);
+    function press() {
+      if(pressedPad || !recording) return;
+      // Manual input takes priority until camera recording is explicitly resumed.
+      if(controlMode==='camera') $('#editor-camera-input').checked=false;
+      finishEditorNote();
+      if(!appendEditorPose(gesture.id,music.currentTime)) return;
+      pressedPad=pad;
+      pad.classList.add('pressed');
+    }
+    pad.onpointerdown=e=>{if(!e.isPrimary || e.button!==0)return;pad.setPointerCapture(e.pointerId);press();};
+    pad.onlostpointercapture=()=>{if(pressedPad===pad)releasePad();};
+    pad.onkeydown=e=>{if([' ','Enter'].includes(e.key)){e.preventDefault();if(!e.repeat)press();}};
+    pad.onkeyup=pad.onblur=()=>{if(pressedPad===pad)releasePad();};
     $('#editor-pads').append(pad);
   }
   function openEditor() {
@@ -1197,7 +1269,7 @@
   }
   async function recordEditor() {
     if(draft) return;
-    if(controlMode==='camera' && (!camera.active || !camera.calibrated)) {
+    if(controlMode==='camera' && $('#editor-camera-input').checked && (!camera.active || !camera.calibrated)) {
       editorCalibration=true;await openCameraSetup();return;
     }
     const song=SONGS.find(s=>s.id===editorSong.value);
@@ -1205,12 +1277,18 @@
     clearEditorNotes();
     $('#editor-pose-image').src=GESTURES[0].frame;
     $('#editor-pose-label').textContent='Faça o primeiro movimento';
-    editorUI('Preparando música…');
+    const session=draft;
+    pendingRecording=session;
+    for (const seconds of [3,2,1]) {
+      editorUI('Prepare-se • '+seconds);
+      await delay(1000);
+      if(draft!==session) return;
+    }
     try {
       await music.play();
-      if(!draft) return;
-      recording=true;editorUI('Gravando • faça o primeiro movimento');
-    } catch { draft=null;editorUI('Não foi possível tocar a música. Tente novamente.'); }
+      if(draft!==session) return;
+      pendingRecording=null;recording=true;editorUI('Gravando • faça o primeiro movimento');
+    } catch { if(draft!==session)return; pendingRecording=null;draft=null;editorUI('Não foi possível tocar a música. Tente novamente.'); }
   }
   function storeChart(notes) {
     const id=editorSong.value;
@@ -1222,8 +1300,9 @@
   $('#editor-button').onclick=()=>{editorSong.value=selectedSong().id;openEditor();};
   editorSong.onchange=()=>editorUI();
   $('#editor-record').onclick=recordEditor;
-  $('#editor-save').onclick=()=>{if(validChart(draft))storeChart(draft);};
-  $('#editor-cancel').onclick=()=>{recording=false;draft=null;music.pause();editorUI();};
+  $('#editor-camera-input').onchange=()=>{releasePad();candidate=null;};
+  $('#editor-save').onclick=()=>{releasePad();if(validChart(draft))storeChart(draft);};
+  $('#editor-cancel').onclick=()=>{pendingRecording=null;releasePad();recording=false;draft=null;music.pause();editorUI();};
   $('#editor-back').onclick=()=>{updateSongSelection(state.selectedSong);showScreen('title-screen');};
   $('#editor-export').onclick=()=>{
     const song=editorSong.value, notes=readChart(song);
@@ -1276,7 +1355,15 @@
     else showScreen("select-screen");
   });
   music.addEventListener("ended", () => {
-    if(recording){recording=false;editorUI('Música concluída. Salve a sequência ou descarte a gravação.');return;}
+    if(recording){releasePad();recording=false;editorUI('Música concluída. Salve a sequência ou descarte a gravação.');return;}
+    if(state.running) {
+      for(const note of state.notes) {
+        if(note.holding && !note.judged && note.time+note.duration<=music.currentTime+.01) {
+          if(evaluateGesture(note.gesture,null,false).valid) registerHit(note,note.timing);
+          else registerMiss(note);
+        }
+      }
+    }
     if (state.running) endGame("Mandou bem demais!", `Você dominou ${selectedSong().title}. O salão inteiro ouviu seu show!`, true);
   });
   window.addEventListener('resize', () => { layoutMetrics = null; layoutAccordion(); });

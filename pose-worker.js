@@ -1,4 +1,4 @@
-importScripts('vendor/pose/kernel.js?v=0.10.0','vendor/pose/model.js?v=0.10.0','air-hybrid.js?v=0.10.0','air-detector.js?v=0.10.0');
+importScripts('vendor/pose/kernel.js?v=0.11.0','vendor/pose/model.js?v=0.11.0','air-hybrid.js?v=0.11.0','air-detector.js?v=0.11.0');
 const detector=new AirDetector();
 self.onmessage=({data})=>{
   try {

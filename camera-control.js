@@ -83,7 +83,7 @@
         // Normal local scripts provide a fallback without changing permissions.
         this.detectorMode = 'página';
         try {
-          const worker = new Worker(this.air ? 'pose-worker.js?v=0.10.0' : 'camera-worker.js?v=0.10.0');
+          const worker = new Worker(this.air ? 'pose-worker.js?v=0.11.0' : 'camera-worker.js?v=0.11.0');
           this.worker = worker;
           this.detectorMode = 'segundo plano';
           worker.onmessage = event => {
